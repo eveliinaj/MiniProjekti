@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace Peli
 {
     public partial class Form1 : Form
@@ -32,6 +32,12 @@ namespace Peli
                 textBox1.Text += rivi + Environment.NewLine;
             }
 
+            richTextBox1.ReadOnly = true;
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
+            richTextBox1.Enabled = false;
+
+            richTextBox1.LoadFile(@"..\..\Pelikuvat\1.rtf");
+
         }
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -40,6 +46,12 @@ namespace Peli
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void RichTextBox1_TextChanged(object sender, EventArgs e)
+        {
+           
 
         }
     }
