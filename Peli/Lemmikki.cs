@@ -6,10 +6,32 @@ namespace Peli
     public class Lemmikki
     {
         public string name;
-        public int OverAllHealth;
-        private int hygiene;
+        private int overAllHealth;
+        public int OverAllHealth
+         {
+                get { return overAllHealth; }
+                set
+            {
+                    if (value > 100)
+                        value = 100;
+
+                    overAllHealth = value;
+                }
+            }
 
         private int mieliala;
+        public int Mieliala
+        {
+            get { return mieliala; }
+            set
+            {
+                if (value > 30)
+                    value = 30;
+
+                mieliala = value;
+            }
+        }
+        private int hygiene;
         public int Hygiene
         {
             get { return hygiene; }
@@ -34,17 +56,9 @@ namespace Peli
             }
         }
 
-        public int Mieliala
-        {
-            get { return mieliala; }
-            set
-            {
-                if (value > 30)
-                    value = 30;
 
-                mieliala = value;
-            }
-        }
+        
+
         public List<Ruoka> ruoat = new List<Ruoka>();
         public List<Harjat> harjat = new List<Harjat>();
         public List<Pesutapa> pesut = new List<Pesutapa>();
@@ -52,8 +66,9 @@ namespace Peli
 
         public Lemmikki()
         {
+            this.OverAllHealth = hygiene + hunger + Mieliala;
 
-            this.OverAllHealth = hygiene + hunger+ Mieliala;
+           
 
             Random rnd = new Random();
             int ruoanmäärä = rnd.Next(2, 5);
@@ -112,7 +127,7 @@ namespace Peli
 
         internal void Paijaa()
         {
-            Mieliala += 3;
+            mieliala += 3;
             LaskeOverall();
 
         }
