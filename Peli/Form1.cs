@@ -82,21 +82,23 @@ namespace Peli
         private void Button2_Click(object sender, EventArgs e)
         {
             var input = textBox2.Text;
-            switch (input)
+            var splitattu=input.Split(' ');
+
+            switch (splitattu[0])
             {
                 case "harjaa":
-                    lemmikki.Harjaa();
+                    lemmikki.Harjaa(splitattu[1]);
                     break;
                 case "pese":
-                    lemmikki.Pese();
+                    lemmikki.Pese(splitattu[1]);
                     break;
                 case "syötä":
-                    lemmikki.Syötä();
+                    lemmikki.Syötä(splitattu[1]);
                     break;
                 case "leiki":
                     lemmikki.Leiki();
                     break;
-                case "Paijaa":
+                case "paijaa":
                     lemmikki.Paijaa();
                     break;
                 default:

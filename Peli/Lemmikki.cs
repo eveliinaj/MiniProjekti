@@ -74,27 +74,41 @@ namespace Peli
             int ruoanmäärä = rnd.Next(2, 5);
 
             Ruoka ruoka = new Ruoka("omena", 2);
+            Ruoka siemen = new Ruoka("siemen", 1);
+            Ruoka salmiakki = new Ruoka("salmiakki", 3);
+
 
             for (int i = 0; i <= ruoanmäärä; i++)
             {
                 ruoat.Add(ruoka);
+                ruoat.Add(siemen);
+                ruoat.Add(salmiakki);
             }
 
             Harjat harja = new Harjat("harja", 5);
             harjat.Add(harja);
-            Pesutapa pesu1 = new Pesutapa("Silvershampoo", 7);
-            Pesutapa sieni = new Pesutapa("Pesusieni", 5);
+            Pesutapa pesu1 = new Pesutapa("silvershampoo", 7);
+            Pesutapa sieni = new Pesutapa("pesusieni", 5);
             pesut.Add(sieni);
             pesut.Add(pesu1);
-            Leikki pallo = new Leikki("Potki palloa", 8);
-            Leikki kutitus = new Leikki("Kutita", 7);
+            Leikki pallo = new Leikki("potki palloa", 8);
+            Leikki kutitus = new Leikki("kutita", 7);
             leikit.Add(kutitus);
             leikit.Add(pallo);
 
         }
-        public void Harjaa()
+        public void Harjaa(string harja)
         {
-            hygiene += harjat[0].pisteet;
+            int indeksi = 0;
+            for (int i = 0; i < harjat.Count; i++)
+            {
+                if (harjat[i].harja.Equals(harja))
+                {
+                    indeksi = i;
+                }
+                
+            }
+            hygiene += harjat[indeksi].pisteet;
             LaskeOverall();
         }
 
@@ -104,16 +118,34 @@ namespace Peli
             
         }
 
-        public void Pese()
+        public void Pese(string pesu)
         {
-            hygiene += pesut[0].Pisteet;
+            int indeksi = 0;
+            for (int i = 0; i < pesut.Count; i++)
+            {
+                if (pesut[i].Nimi.Equals(pesu))
+                {
+                    indeksi = i;
+                }
+
+            }
+            hygiene += pesut[indeksi].Pisteet;
             LaskeOverall();
 
         }
 
-        public void Syötä()
+        public void Syötä(string ruoka)
         {
-            hunger += ruoat[0].pisteet;
+            int indeksi = 0;
+            for (int i = 0; i < ruoat.Count; i++)
+            {
+                if (ruoat[i].ruoanNimi.Equals(ruoka))
+                {
+                    indeksi = i;
+                }
+
+            }
+            hunger += ruoat[indeksi].pisteet;
             LaskeOverall();
 
         }
