@@ -13,6 +13,7 @@ namespace Peli
     public partial class Form1 : Form
     {
         Lemmikki lemmikki = new Lemmikki();
+        Kartta kartta = new Kartta();
 
         public Form1()
         {
@@ -53,9 +54,10 @@ namespace Peli
                 label2.Text += Environment.NewLine + harja.harja;
             }
         }
+
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
-
+            // Tässä
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -89,6 +91,10 @@ namespace Peli
                 case "Paijaa":
                     lemmikki.Paijaa();
                     break;
+                case "Etsi":
+                    kartta.NäytäKartta();
+                    break;
+
                 default:
                     Console.WriteLine("väärä komento");
                     break;
@@ -96,6 +102,7 @@ namespace Peli
 
             NäytäLemmikinKuva();
             NäytäInventoryJaHealth();
+            
         }
 
         private void Label1_Click_1(object sender, EventArgs e)
