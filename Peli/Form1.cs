@@ -51,5 +51,31 @@ namespace Peli
            
 
         }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            var input = textBox2.Text;
+            switch (input)
+            {
+                case "harjaa":
+                    Harjaa();
+                    break;
+                case "pese":
+                    Pese();
+                    break;
+                case "syötä":
+                    Syötä();
+                    break;
+                case "leiki":
+                    Leiki();
+                    break;
+                case "Paijaa":
+                    Paijaa();
+                    break;
+                default:
+                    Console.WriteLine("väärä komento");
+                    break;
+            }
+        }
     }
 }
