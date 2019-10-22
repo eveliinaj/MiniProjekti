@@ -12,8 +12,15 @@ namespace Peli
 
         public Lemmikki()
         {
-            //Random rnd = new Random();
+            Random rnd = new Random();
+            int ruoanmäärä = rnd.Next(2, 5);
+
             Ruoka ruoka = new Ruoka("omena", 2);
+
+            for (int i = 0; i <= ruoanmäärä; i++)
+            {
+            ruoat.Add(ruoka);
+            }
 
         }
 
