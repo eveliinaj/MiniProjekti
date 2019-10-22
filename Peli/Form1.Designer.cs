@@ -55,7 +55,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(56, 142);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(235, 257);
+            this.richTextBox1.Size = new System.Drawing.Size(235, 270);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);

@@ -36,22 +36,42 @@ namespace Peli
         {
             switch (lemmikki.OverAllHealth)
             {
+                case 0:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\0.rtf");
+                    break;
                 case int n when n <= 10:
                     richTextBox1.LoadFile(@"..\..\Pelikuvat\1.rtf");
                     break;
-                case int n when n <= 30:
+                case int n when n <= 20:
                     richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
                     break;
-                case int n when n <= 50:
+                case int n when n <= 30:
                     richTextBox1.LoadFile(@"..\..\Pelikuvat\3.rtf");
                     break;
-                case int n when n <= 80:
+                case int n when n <= 40:
                     richTextBox1.LoadFile(@"..\..\Pelikuvat\4.rtf");
                     break;
-                case int n when n <= 100:
+                case int n when n <= 50:
                     richTextBox1.LoadFile(@"..\..\Pelikuvat\5.rtf");
                     break;
-
+                case int n when n <= 60:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\6.rtf");
+                    break;
+                case int n when n <= 70:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\7.rtf");
+                    break;
+                case int n when n <= 80:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\8.rtf");
+                    break;
+                case int n when n <= 90:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\9.rtf");
+                    break;
+                case int n when n < 100:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\10.rtf");
+                    break;
+                case 100:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\11.rtf");
+                    break;
                 default:
                     break;
             }
