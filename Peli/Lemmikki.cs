@@ -68,35 +68,54 @@ namespace Peli
 
             Harjat harja = new Harjat("harja", 5);
             harjat.Add(harja);
-            Pesutapa pesu1 = new Pesutapa("silvershampoo", 3);
+            Pesutapa pesu1 = new Pesutapa("Silvershampoo", 7);
+            Pesutapa sieni = new Pesutapa("Pesusieni", 5);
+            pesut.Add(sieni);
             pesut.Add(pesu1);
-            Leikki pallo = new Leikki("Potki palloa", 3);
+            Leikki pallo = new Leikki("Potki palloa", 8);
+            Leikki kutitus = new Leikki("Kutita", 7);
+            leikit.Add(kutitus);
             leikit.Add(pallo);
 
         }
         public void Harjaa()
         {
             hygiene += harjat[0].pisteet;
+            LaskeOverall();
+        }
+
+        private void LaskeOverall()
+        {
+            OverAllHealth = hygiene + mieliala + hunger;
+            
         }
 
         public void Pese()
         {
             hygiene += pesut[0].Pisteet;
+            LaskeOverall();
+
         }
 
         public void Syötä()
         {
             hunger += ruoat[0].pisteet;
+            LaskeOverall();
+
         }
 
         internal void Leiki()
         {
             Mieliala +=leikit[0].pisteet;
+            LaskeOverall();
+
         }
 
         internal void Paijaa()
         {
             Mieliala += 3;
+            LaskeOverall();
+
         }
     }
 }
