@@ -136,6 +136,21 @@ namespace Peli
             
         }
 
+        private void LaskeMieliAlaa()
+        {
+            if (lemmikki.Mieliala > 0)
+            lemmikki.Mieliala = lemmikki.Mieliala - 1;
+
+            if(lemmikki.Hygiene > 0)
+            lemmikki.Hygiene = lemmikki.Hygiene - 1;
+
+            if(lemmikki.Hunger > 0)
+            lemmikki.Hunger = lemmikki.Hunger - 1;
+
+            lemmikki.OverAllHealth = lemmikki.Mieliala + lemmikki.Hygiene + lemmikki.Hunger;
+            NäytäInventoryJaHealth();
+            NäytäLemmikinKuva();
+        }
         private void Label1_Click_1(object sender, EventArgs e)
         {
 
@@ -153,12 +168,9 @@ namespace Peli
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            lemmikki.Mieliala -= 1;
-            lemmikki.Hygiene -= 1;
-            lemmikki.Hunger -= 1;
-            lemmikki.LaskeOverall();
-            NäytäInventoryJaHealth();
-            NäytäLemmikinKuva();
+            LaskeMieliAlaa();
+            //timer1.Stop();
+            //timer1.Start();
         }
     }
 }
