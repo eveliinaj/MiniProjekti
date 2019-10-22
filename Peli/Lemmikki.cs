@@ -55,7 +55,6 @@ namespace Peli
 
             this.OverAllHealth = hygiene + hunger+ Mieliala;
 
-
             Random rnd = new Random();
             int ruoanmäärä = rnd.Next(2, 5);
 
