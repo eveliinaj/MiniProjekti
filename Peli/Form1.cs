@@ -33,7 +33,27 @@ namespace Peli
 
         private void NäytäLemmikinKuva()
         {
-            richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
+            switch (lemmikki.OverAllHealth)
+            {
+                case int n when n <= 10:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\1.rtf");
+                    break;
+                case int n when n <= 30:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
+                    break;
+                case int n when n <= 50:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\3.rtf");
+                    break;
+                case int n when n <= 80:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\4.rtf");
+                    break;
+                case int n when n <= 100:
+                    richTextBox1.LoadFile(@"..\..\Pelikuvat\5.rtf");
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void NäytäInventoryJaHealth()
@@ -50,7 +70,7 @@ namespace Peli
 
             foreach (var harja in lemmikki.harjat)
             {
-                label2.Text += Environment.NewLine + harja.harja;
+            label2.Text += Environment.NewLine + harja.harja;
             }
         }
         private void TextBox1_TextChanged(object sender, EventArgs e)

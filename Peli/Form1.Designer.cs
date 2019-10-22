@@ -60,7 +60,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(56, 141);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(267, 247);
+            this.richTextBox1.Size = new System.Drawing.Size(237, 261);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.RichTextBox1_TextChanged);
@@ -96,7 +96,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 414);
+            this.label1.Location = new System.Drawing.Point(53, 456);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 17);
             this.label1.TabIndex = 7;
