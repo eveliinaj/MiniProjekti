@@ -21,31 +21,25 @@ namespace Peli
 
         public void Button1_Click(object sender, EventArgs e)
         {
-
-            //string[] taulukko = lemmikki.NäytäEläin();
-
-
-            //foreach (var rivi in taulukko)
-            //{
-            //    textBox1.Text += rivi + Environment.NewLine;
-            //}
-
             richTextBox1.ReadOnly = true;
             richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
             richTextBox1.Enabled = false;
 
             richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
 
-            for (int i = 0; i < lemmikki.ruoat.Count; i++)
+            label1.Text += Environment.NewLine + lemmikki.OverAllHealth;
+
+            foreach (var ruoka in lemmikki.ruoat)
             {
-                label2.Text += Environment.NewLine + lemmikki.ruoat[i].ruoanNimi;
+                label2.Text += Environment.NewLine + ruoka.ruoanNimi;
             }
 
-            for (int i = 0; i < lemmikki.harjat.Count; i++)
+            foreach (var harja in lemmikki.harjat)
             {
-                label2.Text += Environment.NewLine + lemmikki.harjat[i].harja;
+                label2.Text += Environment.NewLine + harja.harja;
             }
 
+            
         }
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -89,14 +83,14 @@ namespace Peli
             }
         }
 
-        private void Label1_Click(object sender, EventArgs e)
+        private void Label1_Click_1(object sender, EventArgs e)
         {
 
         }
-
         private void Label2_Click(object sender, EventArgs e)
         {
 
         }
+
     }
 }
