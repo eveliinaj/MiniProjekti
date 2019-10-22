@@ -27,6 +27,9 @@ namespace Peli
 
             richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
 
+            label1.Text = default;
+            label2.Text = default;
+
             label1.Text += Environment.NewLine + lemmikki.OverAllHealth;
 
             foreach (var ruoka in lemmikki.ruoat)
