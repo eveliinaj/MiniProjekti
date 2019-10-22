@@ -12,6 +12,8 @@ namespace Peli
 
         public Lemmikki()
         {
+            this.health = 50;
+
             Random rnd = new Random();
             int ruoanmäärä = rnd.Next(2, 5);
 
@@ -21,6 +23,9 @@ namespace Peli
             {
             ruoat.Add(ruoka);
             }
+
+            Harjat harja = new Harjat("harja", 5);
+            harjat.Add(harja);
 
         }
 
