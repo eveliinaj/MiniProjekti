@@ -21,22 +21,19 @@ namespace Peli
         {
             Lemmikki lemmikki = new Lemmikki();
 
-            string[] taulukko = lemmikki.NäytäEläin();
+            //string[] taulukko = lemmikki.NäytäEläin();
 
-            //string unicodeString = char.ConvertFromUtf32(0x1F967);
 
-            //textBox1.Text = unicodeString;
-
-            foreach (var rivi in taulukko)
-            {
-                textBox1.Text += rivi + Environment.NewLine;
-            }
+            //foreach (var rivi in taulukko)
+            //{
+            //    textBox1.Text += rivi + Environment.NewLine;
+            //}
 
             richTextBox1.ReadOnly = true;
             richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
             richTextBox1.Enabled = false;
 
-            richTextBox1.LoadFile(@"..\..\Pelikuvat\1.rtf");
+            richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
 
         }
         private void TextBox1_TextChanged(object sender, EventArgs e)
