@@ -104,14 +104,14 @@ namespace Peli
                 }
                 
             }
-            hygiene += harjat[indeksi].pisteet;
+            Hygiene += harjat[indeksi].pisteet;
             LaskeOverall();
         }
 
-        public void LaskeOverall()
+        public int LaskeOverall()
         {
             OverAllHealth = hygiene + mieliala + hunger;
-
+            return OverAllHealth;
         }
 
         public void Pese(string pesu)
@@ -125,7 +125,7 @@ namespace Peli
                 }
 
             }
-            hygiene += pesut[indeksi].Pisteet;
+            Hygiene += pesut[indeksi].Pisteet;
             LaskeOverall();
 
         }
@@ -141,7 +141,7 @@ namespace Peli
                 }
 
             }
-            hunger += ruoat[indeksi].pisteet;
+            Hunger += ruoat[indeksi].pisteet;
             LaskeOverall();
 
         }
@@ -155,7 +155,7 @@ namespace Peli
 
         internal void Paijaa()
         {
-            mieliala += 3;
+            Mieliala += 3;
             LaskeOverall();
 
         }
