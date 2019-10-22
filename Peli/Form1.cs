@@ -143,5 +143,14 @@ namespace Peli
 
         }
 
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            lemmikki.Mieliala -= 1;
+            lemmikki.Hygiene -= 1;
+            lemmikki.Hunger -= 1;
+            lemmikki.LaskeOverall();
+            NäytäInventoryJaHealth();
+            NäytäLemmikinKuva();
+        }
     }
 }

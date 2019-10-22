@@ -8,16 +8,16 @@ namespace Peli
         public string name;
         private int overAllHealth;
         public int OverAllHealth
-         {
-                get { return overAllHealth; }
-                set
+        {
+            get { return overAllHealth; }
+            set
             {
-                    if (value > 100)
-                        value = 100;
+                if (value > 100)
+                    value = 100;
 
-                    overAllHealth = value;
-                }
+                overAllHealth = value;
             }
+        }
 
         private int mieliala;
         public int Mieliala
@@ -55,9 +55,6 @@ namespace Peli
                 hunger = value;
             }
         }
-
-
-        
 
         public List<Ruoka> ruoat = new List<Ruoka>();
         public List<Harjat> harjat = new List<Harjat>();
@@ -97,7 +94,7 @@ namespace Peli
             LaskeOverall();
         }
 
-        private void LaskeOverall()
+        public void LaskeOverall()
         {
             OverAllHealth = hygiene + mieliala + hunger;
 
