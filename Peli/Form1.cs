@@ -27,6 +27,13 @@ namespace Peli
 
             richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
 
+
+            NäytäInventoryJaHealth();
+            
+        }
+
+        private void NäytäInventoryJaHealth()
+        {
             label1.Text = default;
             label2.Text = default;
 
@@ -41,8 +48,6 @@ namespace Peli
             {
                 label2.Text += Environment.NewLine + harja.harja;
             }
-
-            
         }
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -84,6 +89,8 @@ namespace Peli
                     Console.WriteLine("väärä komento");
                     break;
             }
+
+            NäytäInventoryJaHealth();
         }
 
         private void Label1_Click_1(object sender, EventArgs e)
