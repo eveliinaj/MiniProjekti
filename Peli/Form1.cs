@@ -36,6 +36,16 @@ namespace Peli
 
             richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
 
+            for (int i = 0; i < lemmikki.ruoat.Count; i++)
+            {
+                label2.Text += Environment.NewLine + lemmikki.ruoat[i].ruoanNimi;
+            }
+
+            for (int i = 0; i < lemmikki.harjat.Count; i++)
+            {
+                label2.Text += Environment.NewLine + lemmikki.harjat[i].harja;
+            }
+
         }
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -77,6 +87,16 @@ namespace Peli
                     Console.WriteLine("väärä komento");
                     break;
             }
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
