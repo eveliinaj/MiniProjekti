@@ -12,14 +12,15 @@ namespace Peli
 {
     public partial class Form1 : Form
     {
+        Lemmikki lemmikki = new Lemmikki();
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        public void Button1_Click(object sender, EventArgs e)
         {
-            Lemmikki lemmikki = new Lemmikki();
 
             //string[] taulukko = lemmikki.NäytäEläin();
 
@@ -58,19 +59,19 @@ namespace Peli
             switch (input)
             {
                 case "harjaa":
-                    Harjaa();
+                    lemmikki.Harjaa();
                     break;
                 case "pese":
-                    Pese();
+                    lemmikki.Pese();
                     break;
                 case "syötä":
-                    Syötä();
+                    lemmikki.Syötä();
                     break;
                 case "leiki":
-                    Leiki();
+                    lemmikki.Leiki();
                     break;
                 case "Paijaa":
-                    Paijaa();
+                    lemmikki.Paijaa();
                     break;
                 default:
                     Console.WriteLine("väärä komento");
