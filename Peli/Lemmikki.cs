@@ -8,16 +8,16 @@ namespace Peli
         public string name;
         private int overAllHealth;
         public int OverAllHealth
-         {
-                get { return overAllHealth; }
-                set
+        {
+            get { return overAllHealth; }
+            set
             {
-                    if (value > 100)
-                        value = 100;
+                if (value > 100)
+                    value = 100;
 
-                    overAllHealth = value;
-                }
+                overAllHealth = value;
             }
+        }
 
         private int mieliala;
         public int Mieliala
@@ -56,9 +56,6 @@ namespace Peli
             }
         }
 
-
-        
-
         public List<Ruoka> ruoat = new List<Ruoka>();
         public List<Harjat> harjat = new List<Harjat>();
         public List<Pesutapa> pesut = new List<Pesutapa>();
@@ -66,9 +63,8 @@ namespace Peli
 
         public Lemmikki()
         {
-            this.OverAllHealth = hygiene + hunger + Mieliala;
 
-           
+            this.OverAllHealth = hygiene + hunger + Mieliala;
 
             Random rnd = new Random();
             int ruoanmäärä = rnd.Next(2, 5);
@@ -98,10 +94,10 @@ namespace Peli
             LaskeOverall();
         }
 
-        private void LaskeOverall()
+        public void LaskeOverall()
         {
             OverAllHealth = hygiene + mieliala + hunger;
-            
+
         }
 
         public void Pese()
@@ -120,7 +116,7 @@ namespace Peli
 
         internal void Leiki()
         {
-            Mieliala +=leikit[0].pisteet;
+            Mieliala += leikit[0].pisteet;
             LaskeOverall();
 
         }
