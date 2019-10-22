@@ -6,13 +6,41 @@ namespace Peli
     public class Lemmikki
     {
         public string name;
-        public int health;
+        public int OverAllHealth;
+        private int hygiene;
+        public int Hygiene
+        {
+            get { return hygiene; }
+            set
+            {
+                if (value > 30)
+                    value = 30;
+
+                hygiene = value;
+            }
+        }
+        private int hunger;
+        public int Hunger
+        {
+            get { return hunger; }
+            set
+            {
+                if (value > 70)
+                    value = 70;
+
+                hunger = value;
+            }
+        }
+
+
         public List<Ruoka> ruoat = new List<Ruoka>();
         public List<Harjat> harjat = new List<Harjat>();
 
         public Lemmikki()
         {
-            this.health = 50;
+
+            this.OverAllHealth = hygiene + hunger;
+
 
             Random rnd = new Random();
             int ruoanmäärä = rnd.Next(2, 5);
@@ -21,7 +49,7 @@ namespace Peli
 
             for (int i = 0; i <= ruoanmäärä; i++)
             {
-            ruoat.Add(ruoka);
+                ruoat.Add(ruoka);
             }
 
             Harjat harja = new Harjat("harja", 5);
