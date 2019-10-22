@@ -72,7 +72,17 @@ namespace Peli
             {
             label2.Text += Environment.NewLine + harja.harja;
             }
+            foreach (var pesu in lemmikki.pesut)
+            {
+                label2.Text += Environment.NewLine + pesu.Nimi;
+            }
+            foreach (var leikki in lemmikki.leikit)
+            {
+                label2.Text += Environment.NewLine + leikki.nimi;
+            }
+
         }
+        
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
