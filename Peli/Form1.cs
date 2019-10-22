@@ -83,11 +83,7 @@ namespace Peli
             }
 
         }
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> c403d34f4fb568529db4f30c507005d14d4c0242
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             // Tässä
