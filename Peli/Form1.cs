@@ -25,11 +25,15 @@ namespace Peli
             richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
             richTextBox1.Enabled = false;
 
-            richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
-
+            NäytäLemmikinKuva();
 
             NäytäInventoryJaHealth();
             
+        }
+
+        private void NäytäLemmikinKuva()
+        {
+            richTextBox1.LoadFile(@"..\..\Pelikuvat\2.rtf");
         }
 
         private void NäytäInventoryJaHealth()
@@ -90,6 +94,7 @@ namespace Peli
                     break;
             }
 
+            NäytäLemmikinKuva();
             NäytäInventoryJaHealth();
         }
 
