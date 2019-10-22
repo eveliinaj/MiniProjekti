@@ -56,6 +56,10 @@ namespace Peli
             harjat.Add(harja);
 
         }
+        public void Harjaa()
+        {
+            hygiene += harjat[0].pisteet;
+        }
 
     }
 }
