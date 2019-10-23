@@ -54,9 +54,6 @@ namespace Peli
         Ruoka myrkkysieni = new Ruoka("myrkkysieni", -5);
         Ruoka karkki = new Ruoka("karkki", 10);
 
-
-
-
         public Form1()
         {
             InitializeComponent();
