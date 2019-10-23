@@ -49,6 +49,7 @@ namespace Peli
         List<Ruoka> löydetyt = new List<Ruoka>();
 
         bool vastaantulija = false;
+        bool tehdäänvaihto = false;
         int vastaantulijanruoka = default;
         public List<Ruoka> randomruoat = new List<Ruoka>();
         Ruoka myrkkysieni = new Ruoka("myrkkysieni", -5);
@@ -234,13 +235,20 @@ namespace Peli
                     SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_SHOW : SW_HIDE));
                     ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);
                     isVisible = !isVisible;
+
                     löydetyt = kartta.NäytäKartta();
+
                     SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_HIDE : SW_SHOW));
                     ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);
                     isVisible = !isVisible;
+
+
+                    textBox3.Text = "Jee! Löysit seuraavat asiat:" + Environment.NewLine;
+
                     foreach (var ruoka in löydetyt)
                     {
                         lemmikki.ruoat.Add(ruoka);
+                        textBox3.Text += ruoka + Environment.NewLine;
                     }
 
                     VastaanTulija();
@@ -255,15 +263,24 @@ namespace Peli
 
                     if (vastaantulija == true)
                     {
+                        tehdäänvaihto = true;
+
                         textBox3.Text += Environment.NewLine
                             + "Minkä ruoan haluat antaa vaihdossa?";
-                        TeeVaihtoKauppa();
+                       
                     }
                     break;
+
 
                 default:
                     textBox1.Text+= "Virheellinen komento!";
                     break;
+            }
+
+            if (tehdäänvaihto == true)
+            {
+                string vaihdettava = textBox2.Text;
+                TeeVaihtoKauppa(vaihdettava);
             }
 
             NäytäLemmikinKuva();
@@ -278,14 +295,13 @@ namespace Peli
             Random rnd = new Random();
             vastaantulijanruoka = rnd.Next(0, randomruoat.Count);
 
-            textBox3.Text = "Oho! Löysit vastaantulijan." + Environment.NewLine +
+            textBox3.Text += "Oho! Löysit vastaantulijan." + Environment.NewLine +
                 $"Hänellä on {randomruoat[vastaantulijanruoka].ruoanNimi} ja hän haluaisi tehdä kanssasi vaihtokaupan." + Environment.NewLine
                 + "Haluatko vaihtaa? Vastaa kyllä/ei.";
         }
 
-        private void TeeVaihtoKauppa()
+        private void TeeVaihtoKauppa(string vaihdettava)
         {
-            string vaihdettava = textBox2.Text;
             for (int i = 0; i < lemmikki.ruoat.Count; i++)
             {
                 if (lemmikki.ruoat[i].ruoanNimi.Equals(vaihdettava))
@@ -296,6 +312,7 @@ namespace Peli
                 }
             }
 
+            vastaantulija = false;
             NäytäInventoryJaHealth();
         }
 
