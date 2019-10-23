@@ -1,12 +1,24 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+ï»¿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Peli;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Testit
+namespace Peli.Tests
 {
-    [TestClass]
-    public class UnitTest1
+    [TestClass()]
+    public class Form1Tests
     {
+        //[TestMethod()]   MITEN TÃ„MÃ„ TOIMIMAAN ??????
+        //public void Button2KlikattuTest()
+        //{
+        //    var form1 = new Form1();
+        //    form1.Button2Klikattu("harjaa");
+        //    Assert.AreEqual(result, form1.Button2Klikattu);
+        //}
+
         [TestMethod]
         public void VastaLuodunLemmikinOverAllHealthOnNolla()
         {
@@ -59,20 +71,5 @@ namespace Testit
             int expected = 100;
             Assert.AreEqual(expected, lemmikki.OverAllHealth);
         }
-
-        //[TestMethod]  //// KUINKA SAADAAN TESTATTUA WINFORMSIN BUTTON KLIKKEJÄ ????
-        //public void KäyttäjänSyötteenTestaus()
-        //{
-        //    var form1 = new Form1();
-        //    form1.Button2Klikattu("harjaa");
-
-        //}
-
-
-
-
-
-
-
     }
 }

@@ -102,7 +102,6 @@ namespace Peli
                 {
                     indeksi = i;
                 }
-                
             }
             Hygiene += harjat[indeksi].pisteet;
             LaskeOverall();
