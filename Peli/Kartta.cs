@@ -23,11 +23,6 @@ namespace Peli
             randomruoat.Add(siemen);
             Ruoka salmiakki = new Ruoka("salmiakki", 3);
             randomruoat.Add(salmiakki);
-
-
-
-
-            
         }
 
 
