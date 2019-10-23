@@ -29,9 +29,7 @@ namespace Peli
             richTextBox1.Enabled = false;
 
             NäytäLemmikinKuva();
-
             NäytäInventoryJaHealth();
-            
         }
 
         private void NäytäLemmikinKuva()
@@ -81,14 +79,42 @@ namespace Peli
 
         private void NäytäInventoryJaHealth()
         {
+            List<string> varasto = new List<string>();
+            List<int> varastonmäärä = new List<int>();
+            bool löytyi = false;
+
             label1.Text = default;
             label2.Text = default;
 
             label1.Text += Environment.NewLine + lemmikki.OverAllHealth;
 
-            foreach (var ruoka in lemmikki.ruoat)
+            foreach (var r in lemmikki.ruoat)
             {
-                label2.Text += Environment.NewLine + ruoka.ruoanNimi;
+                for (int i = 0; i < varasto.Count; i++)
+                {
+                    if (varasto[i] == r.ruoanNimi)
+                    {
+                        varastonmäärä[i]++;
+                        löytyi = true;
+                    }
+                }
+
+                if (löytyi != true)
+                {
+                    varasto.Add(r.ruoanNimi);
+                    varastonmäärä.Add(1);
+                }
+                löytyi = false;
+            }
+
+            for (int i = 0; i < varasto.Count; i++)
+            {
+                varasto[i] += " x" + varastonmäärä[i].ToString();
+            }
+
+            foreach (var ruoka in varasto)
+            {
+                label2.Text += Environment.NewLine + ruoka;
             }
 
             foreach (var harja in lemmikki.harjat)
