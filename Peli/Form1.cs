@@ -43,7 +43,6 @@ namespace Peli
 
         Lemmikki lemmikki = new Lemmikki();
 
-        Lemmikki uusilemmikki = new Lemmikki();
         Kartta kartta = new Kartta();
         
         List<Ruoka> löydetyt = new List<Ruoka>();
@@ -263,6 +262,7 @@ namespace Peli
                 case "Kyllä":
                     if (lemmikki.OverAllHealth==0)
                     {
+                     Lemmikki uusilemmikki = new Lemmikki();
                         lemmikki = uusilemmikki;
                     }
 
