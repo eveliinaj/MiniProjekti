@@ -15,9 +15,12 @@ namespace Peli
     {
         
         Lemmikki lemmikki = new Lemmikki();
+
         Lemmikki uusilemmikki = new Lemmikki();
          Kartta kartta = new Kartta();
-            
+        
+        List<Ruoka> löydetyt = new List<Ruoka>();
+        
 
 
         public Form1()
@@ -32,9 +35,7 @@ namespace Peli
             richTextBox1.Enabled = false;
 
             NäytäLemmikinKuva();
-
             NäytäInventoryJaHealth();
-            
         }
 
         //public Lemmikki LuoLemmikki()
@@ -90,14 +91,42 @@ namespace Peli
 
         private void NäytäInventoryJaHealth()
         {
+            List<string> varasto = new List<string>();
+            List<int> varastonmäärä = new List<int>();
+            bool löytyi = false;
+
             label1.Text = default;
             label2.Text = default;
 
             label1.Text += Environment.NewLine + lemmikki.OverAllHealth;
 
-            foreach (var ruoka in lemmikki.ruoat)
+            foreach (var r in lemmikki.ruoat)
             {
-                label2.Text += Environment.NewLine + ruoka.ruoanNimi;
+                for (int i = 0; i < varasto.Count; i++)
+                {
+                    if (varasto[i] == r.ruoanNimi)
+                    {
+                        varastonmäärä[i]++;
+                        löytyi = true;
+                    }
+                }
+
+                if (löytyi != true)
+                {
+                    varasto.Add(r.ruoanNimi);
+                    varastonmäärä.Add(1);
+                }
+                löytyi = false;
+            }
+
+            for (int i = 0; i < varasto.Count; i++)
+            {
+                varasto[i] += " x" + varastonmäärä[i].ToString();
+            }
+
+            foreach (var ruoka in varasto)
+            {
+                label2.Text += Environment.NewLine + ruoka;
             }
 
             foreach (var harja in lemmikki.harjat)
@@ -113,11 +142,11 @@ namespace Peli
                 label2.Text += Environment.NewLine + leikki.nimi;
             }
             textBox1.Text = default;
-            if (lemmikki.OverAllHealth > 70)
+            if (lemmikki.OverAllHealth<100&& lemmikki.OverAllHealth > 70)
             {
-                textBox1.Text += Environment.NewLine + "Lemmikkisi näyttää voivan hyvin.Hyvää työtä!";
+                textBox1.Text += Environment.NewLine + "Lemmikkisi näyttää voivan hyvin. Hyvää työtä!";
             }
-            else if (lemmikki.OverAllHealth>0&& lemmikki.OverAllHealth< 10)
+            else if (lemmikki.OverAllHealth>0 && lemmikki.OverAllHealth< 10)
             {
                 textBox1.Text += Environment.NewLine + "Lemmikkisi on hädänalainen. TEE JOTAIN!!!";
             }
@@ -167,8 +196,12 @@ namespace Peli
                 case "paijaa":
                     lemmikki.Paijaa();
                     break;
-                case "Etsi":
-                    kartta.NäytäKartta();
+                case "etsi":
+                    löydetyt = kartta.NäytäKartta();
+                    foreach (var ruoka in löydetyt)
+                    {
+                        lemmikki.ruoat.Add(ruoka);
+                    }
                     break;
                 case "Kyllä":
                     if (lemmikki.OverAllHealth==0)
@@ -180,7 +213,7 @@ namespace Peli
                     break;
 
                 default:
-                    textBox1.Text+="Virheellinen komento!";
+                    textBox1.Text+= "Virheellinen komento!";
                     break;
             }
 

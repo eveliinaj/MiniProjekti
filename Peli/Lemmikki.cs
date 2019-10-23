@@ -28,7 +28,7 @@ namespace Peli
             get { return mieliala; }
             set
             {
-                if (value > 30)
+                if (value >= 30)
                     value = 30;
 
                 mieliala = value;
@@ -40,7 +40,7 @@ namespace Peli
             get { return hygiene; }
             set
             {
-                if (value > 30)
+                if (value >= 30)
                     value = 30;
 
                 hygiene = value;
@@ -52,7 +52,7 @@ namespace Peli
             get { return hunger; }
             set
             {
-                if (value > 40)
+                if (value >= 40)
                     value = 40;
 
                 hunger = value;
@@ -66,8 +66,7 @@ namespace Peli
 
         public Lemmikki()
         {
-
-            this.OverAllHealth = hygiene + hunger + Mieliala;
+            this.OverAllHealth = Hygiene + Hunger + Mieliala;
 
             Random rnd = new Random();
             int ruoanmäärä = rnd.Next(2, 5);
@@ -75,7 +74,6 @@ namespace Peli
             Ruoka ruoka = new Ruoka("omena", 2);
             Ruoka siemen = new Ruoka("siemen", 1);
             Ruoka salmiakki = new Ruoka("salmiakki", 3);
-
 
             for (int i = 0; i <= ruoanmäärä; i++)
             {
@@ -141,12 +139,12 @@ namespace Peli
                 if (ruoat[i].ruoanNimi.Equals(ruoka))
                 {
                     indeksi = i;
+                    break;
                 }
-
             }
             Hunger += ruoat[indeksi].pisteet;
+            ruoat.Remove(ruoat[indeksi]);
             LaskeOverall();
-
         }
 
         internal void Leiki()

@@ -10,8 +10,27 @@ namespace Peli
     {
         public KoordinaattiMääreet Sijainti { get; set; }
 
-        public void NäytäKartta()
+        public List<Ruoka> randomruoat = new List<Ruoka>();
+        public List<Ruoka> löydetyt = new List<Ruoka>();
+
+        int palkinto = 0;
+
+        public void RandomRuokaa()
         {
+            Ruoka ruoka = new Ruoka("omena", 2);
+            randomruoat.Add(ruoka);
+            Ruoka siemen = new Ruoka("siemen", 1);
+            randomruoat.Add(siemen);
+            Ruoka salmiakki = new Ruoka("salmiakki", 3);
+            randomruoat.Add(salmiakki);
+        }
+
+
+
+
+        public List<Ruoka> NäytäKartta()
+        {
+            RandomRuokaa();
             Console.WindowHeight = 26;
             Console.WindowWidth = 64;
             int näytönleveys = Console.WindowWidth;
@@ -71,6 +90,11 @@ namespace Peli
                         itemiy = randomnumber.Next(1, näytönkorkeus - 2);
                         itemisumma++;
 
+                        Random random = new Random();
+                        palkinto = random.Next(0, randomruoat.Count);
+
+                        löydetyt.Add(randomruoat[palkinto]);
+
                         Itemit();
 
                         return;
@@ -84,6 +108,7 @@ namespace Peli
                     Console.Write("X"); // kuva joka piirtyy itemin päälle
                 }
             }
+            return löydetyt;
         }
 
         public void Liikkuminen(int x, int y)
