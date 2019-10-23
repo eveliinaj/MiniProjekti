@@ -14,6 +14,8 @@ namespace Peli
     {
         Lemmikki lemmikki = new Lemmikki();
         Kartta kartta = new Kartta();
+        List<Ruoka> löydetyt = new List<Ruoka>();
+        
 
         public Form1()
         {
@@ -143,7 +145,11 @@ namespace Peli
                     lemmikki.Paijaa();
                     break;
                 case "Etsi":
-                    kartta.NäytäKartta();
+                    löydetyt = kartta.NäytäKartta();
+                    foreach (var ruoka in löydetyt)
+                    {
+                        lemmikki.ruoat.Add(ruoka);
+                    }
                     break;
 
                 default:
