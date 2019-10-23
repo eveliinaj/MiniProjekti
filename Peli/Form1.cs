@@ -172,7 +172,7 @@ namespace Peli
                 case "paijaa":
                     lemmikki.Paijaa();
                     break;
-                case "Etsi":
+                case "etsi":
                     löydetyt = kartta.NäytäKartta();
                     foreach (var ruoka in löydetyt)
                     {
