@@ -10,12 +10,18 @@ using System.Windows.Forms;
 using System.IO;
 namespace Peli
 {
+    
     public partial class Form1 : Form
     {
+        
         Lemmikki lemmikki = new Lemmikki();
-        Kartta kartta = new Kartta();
+
+        Lemmikki uusilemmikki = new Lemmikki();
+         Kartta kartta = new Kartta();
+        
         List<Ruoka> löydetyt = new List<Ruoka>();
         
+
 
         public Form1()
         {
@@ -33,7 +39,13 @@ namespace Peli
             NäytäInventoryJaHealth();
         }
 
-        private void NäytäLemmikinKuva()
+        //public Lemmikki LuoLemmikki()
+        //{
+        //Lemmikki lemmikki = new Lemmikki();
+        //    return lemmikki;
+        //}
+
+        public void NäytäLemmikinKuva()
         {
             switch (lemmikki.OverAllHealth)
             {
@@ -130,7 +142,21 @@ namespace Peli
             {
                 label2.Text += Environment.NewLine + leikki.nimi;
             }
-
+            textBox1.Text = default;
+            if (lemmikki.OverAllHealth<100&& lemmikki.OverAllHealth > 70)
+            {
+                textBox1.Text += Environment.NewLine + "Lemmikkisi näyttää voivan hyvin. Hyvää työtä!";
+            }
+            else if (lemmikki.OverAllHealth>0 && lemmikki.OverAllHealth< 10)
+            {
+                textBox1.Text += Environment.NewLine + "Lemmikkisi on hädänalainen. TEE JOTAIN!!!";
+            }
+            else if(lemmikki.OverAllHealth == 0)
+            {
+                textBox1.Text += Environment.NewLine + "Lemmikki kuoli.";
+                textBox1.Text += Environment.NewLine + "Haluatko aloittaa uuden pelin? Vastaa Kyllä/Ei.";
+               
+            }
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -183,9 +209,17 @@ namespace Peli
                         lemmikki.ruoat.Add(ruoka);
                     }
                     break;
+                case "Kyllä":
+                    if (lemmikki.OverAllHealth==0)
+                    {
+
+                        lemmikki = uusilemmikki;
+                    
+                    }
+                    break;
 
                 default:
-                    Console.WriteLine("väärä komento");
+                    textBox1.Text+= "Virheellinen komento!";
                     break;
             }
 
@@ -228,6 +262,12 @@ namespace Peli
             LaskeMieliAlaa();
             //timer1.Stop();
             //timer1.Start();
+        }
+     
+
+        private void Label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

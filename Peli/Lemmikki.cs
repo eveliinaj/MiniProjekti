@@ -16,40 +16,43 @@ namespace Peli
                     value = 100;
 
                 overAllHealth = value;
+                
             }
         }
 
-        private int mieliala;
+        
+
+        private int mieliala=5;
         public int Mieliala
         {
             get { return mieliala; }
             set
             {
-                if (value > 30)
+                if (value >= 30)
                     value = 30;
 
                 mieliala = value;
             }
         }
-        private int hygiene;
+        private int hygiene=5;
         public int Hygiene
         {
             get { return hygiene; }
             set
             {
-                if (value > 30)
+                if (value >= 30)
                     value = 30;
 
                 hygiene = value;
             }
         }
-        private int hunger;
+        private int hunger=5;
         public int Hunger
         {
             get { return hunger; }
             set
             {
-                if (value > 40)
+                if (value >= 40)
                     value = 40;
 
                 hunger = value;
