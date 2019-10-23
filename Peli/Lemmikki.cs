@@ -59,13 +59,23 @@ namespace Peli
             }
         }
 
+        public List<Pesutapa> dummypesutavat = new List<Pesutapa>();
+
+        Pesutapa pesu1 = new Pesutapa("hopeashampoo", 7);
+        Pesutapa sieni = new Pesutapa("pesusieni", 5);
+        Pesutapa harja = new Pesutapa("harja", 5);
+        Pesutapa kylpy = new Pesutapa("vaahtokylpy", 10);
+        Pesutapa suihku = new Pesutapa("suihku", 5);
+        
+
         public List<Ruoka> ruoat = new List<Ruoka>();
-        public List<Harjat> harjat = new List<Harjat>();
         public List<Pesutapa> pesut = new List<Pesutapa>();
         public List<Leikki> leikit = new List<Leikki>();
 
         public Lemmikki()
         {
+            TeeDummyLista();
+
             this.OverAllHealth = Hygiene + Hunger + Mieliala;
 
             Random rnd = new Random();
@@ -82,30 +92,27 @@ namespace Peli
                 ruoat.Add(salmiakki);
             }
 
-            Harjat harja = new Harjat("harja", 5);
-            harjat.Add(harja);
-            Pesutapa pesu1 = new Pesutapa("silvershampoo", 7);
-            Pesutapa sieni = new Pesutapa("pesusieni", 5);
-            pesut.Add(sieni);
-            pesut.Add(pesu1);
             Leikki pallo = new Leikki("potki palloa", 8);
             Leikki kutitus = new Leikki("kutita", 7);
             leikit.Add(kutitus);
             leikit.Add(pallo);
 
-        }
-        public void Harjaa(string harja)
-        {
-            int indeksi = 0;
-            for (int i = 0; i < harjat.Count; i++)
+
+            for (int i = 0; i < 2; i++)
             {
-                if (harjat[i].harja.Equals(harja))
-                {
-                    indeksi = i;
-                }
+                int arvottuhygieniatuote = rnd.Next(0, dummypesutavat.Count);
+                pesut.Add(dummypesutavat[arvottuhygieniatuote]);
+                dummypesutavat.Remove(dummypesutavat[arvottuhygieniatuote]);
             }
-            Hygiene += harjat[indeksi].pisteet;
-            LaskeOverall();
+        }
+
+        public void TeeDummyLista()
+        {
+            dummypesutavat.Add(pesu1);
+            dummypesutavat.Add(sieni);
+            dummypesutavat.Add(harja);
+            dummypesutavat.Add(kylpy);
+            dummypesutavat.Add(suihku);
         }
 
         public int LaskeOverall()
