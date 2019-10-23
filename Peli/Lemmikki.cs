@@ -16,10 +16,13 @@ namespace Peli
                     value = 100;
 
                 overAllHealth = value;
+                
             }
         }
 
-        private int mieliala;
+        
+
+        private int mieliala=5;
         public int Mieliala
         {
             get { return mieliala; }
@@ -31,7 +34,7 @@ namespace Peli
                 mieliala = value;
             }
         }
-        private int hygiene;
+        private int hygiene=5;
         public int Hygiene
         {
             get { return hygiene; }
@@ -43,7 +46,7 @@ namespace Peli
                 hygiene = value;
             }
         }
-        private int hunger;
+        private int hunger=5;
         public int Hunger
         {
             get { return hunger; }
