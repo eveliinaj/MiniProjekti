@@ -20,6 +20,7 @@ namespace Peli
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         public void Button1_Click(object sender, EventArgs e)
