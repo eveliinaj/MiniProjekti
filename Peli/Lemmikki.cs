@@ -133,18 +133,16 @@ namespace Peli
 
         public void Syötä(string ruoka)
         {
-            int indeksi = 0;
             for (int i = 0; i < ruoat.Count; i++)
             {
                 if (ruoat[i].ruoanNimi.Equals(ruoka))
                 {
-                    indeksi = i;
+                    Hunger += ruoat[i].pisteet;
+                    ruoat.Remove(ruoat[i]);
+                    LaskeOverall();
                     break;
                 }
             }
-            Hunger += ruoat[indeksi].pisteet;
-            ruoat.Remove(ruoat[indeksi]);
-            LaskeOverall();
         }
 
         internal void Leiki()
