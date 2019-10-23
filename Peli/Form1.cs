@@ -29,9 +29,7 @@ namespace Peli
             richTextBox1.Enabled = false;
 
             NäytäLemmikinKuva();
-
             NäytäInventoryJaHealth();
-            
         }
 
         private void NäytäLemmikinKuva()
@@ -104,9 +102,9 @@ namespace Peli
                 if (löytyi != true)
                 {
                     varasto.Add(r.ruoanNimi);
-                    varastonmäärä.Add(0);
-                    löytyi = false;
+                    varastonmäärä.Add(1);
                 }
+                löytyi = false;
             }
 
             for (int i = 0; i < varasto.Count; i++)
