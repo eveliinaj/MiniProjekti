@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Peli
 {
+
     public class Kartta
     {
         public KoordinaattiMääreet Sijainti { get; set; }
@@ -24,9 +25,6 @@ namespace Peli
             Ruoka salmiakki = new Ruoka("salmiakki", 3);
             randomruoat.Add(salmiakki);
         }
-
-
-
 
         public List<Ruoka> NäytäKartta()
         {

@@ -212,7 +212,12 @@ namespace Peli
         private void Button2_Click(object sender, EventArgs e)
         {
             var input = textBox2.Text;
-            var splitattu=input.Split(' ');
+            Button2Klikattu(input);
+        }
+
+        public void Button2Klikattu(string input)
+        {
+            var splitattu = input.Split(' ');
 
             switch (splitattu[0])
             {
@@ -285,7 +290,7 @@ namespace Peli
 
             NäytäLemmikinKuva();
             NäytäInventoryJaHealth();
-            
+
         }
 
         private void VastaanTulija()
@@ -315,6 +320,7 @@ namespace Peli
             vastaantulija = false;
             NäytäInventoryJaHealth();
         }
+
 
         private void LaskeMieliAlaa()
         {
