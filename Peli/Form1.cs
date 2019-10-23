@@ -293,7 +293,8 @@ namespace Peli
             {
                 if (lemmikki.ruoat[i].ruoanNimi.Equals(vaihdettava))
                 {
-                    lemmikki.ruoat[i] = randomruoat[vastaantulijanruoka];
+                    lemmikki.ruoat.Remove(lemmikki.ruoat[i]);
+                    lemmikki.ruoat.Add(randomruoat[vastaantulijanruoka]);
                     break;
                 }
             }
