@@ -54,12 +54,20 @@ namespace Peli
         Ruoka myrkkysieni = new Ruoka("myrkkysieni", -5);
         Ruoka karkki = new Ruoka("karkki", 10);
 
+        string ohjeet = "Yleisimmät komennot:" + Environment.NewLine
+            + "syötä x = syötä haluamasi ruoka (esim. syötä omena)" + Environment.NewLine
+            + "harjaa harjalla = harjaa eläintä" + Environment.NewLine
+            + "paijaa = paijaa eläintä" + Environment.NewLine
+            + "pese x = pese eläin (esim. pese pesusieni)" + Environment.NewLine
+            + "Kokeile vapaasti muitakin komentoja!";
+
         public Form1()
         {
             InitializeComponent();
             hWnd = GetConsoleWindow();
             randomruoat.Add(myrkkysieni);
             randomruoat.Add(karkki);
+            textBox3.Text = ohjeet;
         }
 
         public void Button1_Click(object sender, EventArgs e)
@@ -216,6 +224,7 @@ namespace Peli
 
         public void Button2Klikattu(string input)
         {
+            input = input.ToLower();
             var splitattu = input.Split(' ');
 
             switch (splitattu[0])
@@ -259,7 +268,7 @@ namespace Peli
 
                     break;
 
-                case "Kyllä":
+                case "kyllä":
                     if (lemmikki.OverAllHealth==0)
                     {
                      Lemmikki uusilemmikki = new Lemmikki();
@@ -270,12 +279,14 @@ namespace Peli
                     {
                         tehdäänvaihto = true;
 
-                        textBox3.Text += Environment.NewLine
+                        textBox3.Text += Environment.NewLine + Environment.NewLine
                             + "Minkä ruoan haluat antaa vaihdossa?";
-                       
                     }
                     break;
 
+                case "ei":
+                    textBox3.Text = ohjeet;
+                    break;
 
                 default:
                     textBox1.Text+= "Virheellinen komento!";
@@ -300,7 +311,7 @@ namespace Peli
             Random rnd = new Random();
             vastaantulijanruoka = rnd.Next(0, randomruoat.Count);
 
-            textBox3.Text += "Oho! Löysit vastaantulijan." + Environment.NewLine +
+            textBox3.Text += Environment.NewLine + "Oho! Löysit vastaantulijan." + Environment.NewLine +
                 $"Hänellä on {randomruoat[vastaantulijanruoka].ruoanNimi} ja hän haluaisi tehdä kanssasi vaihtokaupan." + Environment.NewLine
                 + "Haluatko vaihtaa? Vastaa kyllä/ei.";
         }
@@ -317,6 +328,7 @@ namespace Peli
                 }
             }
 
+            textBox3.Text = ohjeet;
             vastaantulija = false;
             NäytäInventoryJaHealth();
         }
