@@ -175,18 +175,26 @@ namespace Peli
             {
                 label2.Text += Environment.NewLine + leikki.nimi;
             }
-            textBox1.Text = default;
-            if (lemmikki.OverAllHealth<100&& lemmikki.OverAllHealth > 70)
+
+            if (lemmikki.OverAllHealth < 100 && lemmikki.OverAllHealth > 70)
             {
                 textBox1.Text += Environment.NewLine + "Lemmikkisi näyttää voivan hyvin. Hyvää työtä!";
             }
-            else if (lemmikki.OverAllHealth>0 && lemmikki.OverAllHealth< 10)
+            else if (lemmikki.OverAllHealth<100&& lemmikki.OverAllHealth > 70)
+            {
+                textBox1.Text += Environment.NewLine + "Lemmikkisi näyttää voivan hyvin. Hyvää työtä!";
+            }
+            else if (lemmikki.OverAllHealth < 71 && lemmikki.OverAllHealth > 50)
+            {
+                textBox1.Text += Environment.NewLine + "Lemmikilläsi on kaikki ok";
+            }
+            else if (lemmikki.OverAllHealth>0 && lemmikki.OverAllHealth< 11)
             {
                 textBox1.Text += Environment.NewLine + "Lemmikkisi on hädänalainen. TEE JOTAIN!!!";
             }
             else if(lemmikki.OverAllHealth == 0)
             {
-                textBox1.Text += Environment.NewLine + "Lemmikki kuoli.";
+                textBox1.Text = "Lemmikki kuoli.";
                 textBox1.Text += Environment.NewLine + "Haluatko aloittaa uuden pelin? Vastaa Kyllä/Ei.";
                
             }
@@ -278,7 +286,7 @@ namespace Peli
 
 
                 default:
-                    textBox1.Text+= "Virheellinen komento!";
+                    textBox1.Text= "Virheellinen komento!";
                     break;
             }
 
