@@ -44,16 +44,25 @@ namespace Peli
         Lemmikki lemmikki = new Lemmikki();
 
         Lemmikki uusilemmikki = new Lemmikki();
-         Kartta kartta = new Kartta();
+        Kartta kartta = new Kartta();
         
         List<Ruoka> löydetyt = new List<Ruoka>();
-        
+
+        bool vastaantulija = false;
+        int vastaantulijanruoka = default;
+        public List<Ruoka> randomruoat = new List<Ruoka>();
+        Ruoka myrkkysieni = new Ruoka("myrkkysieni", -5);
+        Ruoka karkki = new Ruoka("karkki", 10);
+
+
 
 
         public Form1()
         {
             InitializeComponent();
             hWnd = GetConsoleWindow();
+            randomruoat.Add(myrkkysieni);
+            randomruoat.Add(karkki);
         }
 
         public void Button1_Click(object sender, EventArgs e)
@@ -236,13 +245,22 @@ namespace Peli
                     {
                         lemmikki.ruoat.Add(ruoka);
                     }
+
+                    VastaanTulija();
+
                     break;
+
                 case "Kyllä":
                     if (lemmikki.OverAllHealth==0)
                     {
-
                         lemmikki = uusilemmikki;
-                    
+                    }
+
+                    if (vastaantulija == true)
+                    {
+                        textBox3.Text += Environment.NewLine
+                            + "Minkä ruoan haluat antaa vaihdossa?";
+                        TeeVaihtoKauppa();
                     }
                     break;
 
@@ -254,6 +272,33 @@ namespace Peli
             NäytäLemmikinKuva();
             NäytäInventoryJaHealth();
             
+        }
+
+        private void VastaanTulija()
+        {
+            vastaantulija = true;
+
+            Random rnd = new Random();
+            vastaantulijanruoka = rnd.Next(0, randomruoat.Count);
+
+            textBox3.Text = "Oho! Löysit vastaantulijan." + Environment.NewLine +
+                $"Hänellä on {randomruoat[vastaantulijanruoka].ruoanNimi} ja hän haluaisi tehdä kanssasi vaihtokaupan." + Environment.NewLine
+                + "Haluatko vaihtaa? Vastaa kyllä/ei.";
+        }
+
+        private void TeeVaihtoKauppa()
+        {
+            string vaihdettava = textBox2.Text;
+            for (int i = 0; i < lemmikki.ruoat.Count; i++)
+            {
+                if (lemmikki.ruoat[i].ruoanNimi.Equals(vaihdettava))
+                {
+                    lemmikki.ruoat[i] = randomruoat[vastaantulijanruoka];
+                    break;
+                }
+            }
+
+            NäytäInventoryJaHealth();
         }
 
         private void LaskeMieliAlaa()
@@ -295,6 +340,11 @@ namespace Peli
      
 
         private void Label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox3_TextChanged(object sender, EventArgs e)
         {
 
         }

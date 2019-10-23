@@ -37,14 +37,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(56, 34);
+            this.button1.Location = new System.Drawing.Point(38, 14);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(253, 50);
+            this.button1.Size = new System.Drawing.Size(364, 50);
             this.button1.TabIndex = 0;
             this.button1.Text = "Aloita peli";
             this.button1.UseVisualStyleBackColor = true;
@@ -52,7 +53,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(56, 142);
+            this.richTextBox1.Location = new System.Drawing.Point(38, 165);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(235, 270);
@@ -62,7 +63,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(283, 92);
+            this.button2.Location = new System.Drawing.Point(351, 68);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(51, 23);
@@ -73,17 +74,17 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(56, 92);
+            this.textBox2.Location = new System.Drawing.Point(38, 69);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(220, 22);
+            this.textBox2.Size = new System.Drawing.Size(307, 22);
             this.textBox2.TabIndex = 4;
             this.textBox2.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(382, 314);
+            this.label2.Location = new System.Drawing.Point(307, 178);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 17);
             this.label2.TabIndex = 6;
@@ -93,7 +94,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 414);
+            this.label1.Location = new System.Drawing.Point(53, 446);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 17);
             this.label1.TabIndex = 7;
@@ -102,11 +103,11 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(385, 14);
+            this.textBox1.Location = new System.Drawing.Point(38, 108);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(545, 285);
+            this.textBox1.Size = new System.Drawing.Size(364, 53);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
@@ -116,11 +117,21 @@
             this.timer1.Interval = 10000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(450, 14);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(243, 421);
+            this.textBox3.TabIndex = 8;
+            this.textBox3.TextChanged += new System.EventHandler(this.TextBox3_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(981, 566);
+            this.ClientSize = new System.Drawing.Size(722, 566);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
@@ -147,6 +158,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
