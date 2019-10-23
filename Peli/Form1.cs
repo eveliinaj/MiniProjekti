@@ -162,11 +162,6 @@ namespace Peli
             {
                 label2.Text += Environment.NewLine + ruoka;
             }
-
-            foreach (var harja in lemmikki.harjat)
-            {
-            label2.Text += Environment.NewLine + harja.harja;
-            }
             foreach (var pesu in lemmikki.pesut)
             {
                 label2.Text += Environment.NewLine + pesu.Nimi;
@@ -221,7 +216,7 @@ namespace Peli
             switch (splitattu[0])
             {
                 case "harjaa":
-                    lemmikki.Harjaa(splitattu[1]);
+                    lemmikki.Pese(splitattu[1]);
                     break;
                 case "pese":
                     lemmikki.Pese(splitattu[1]);

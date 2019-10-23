@@ -44,7 +44,7 @@
             // 
             this.button1.Cursor = System.Windows.Forms.Cursors.Cross;
             this.button1.Location = new System.Drawing.Point(28, 11);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(273, 41);
             this.button1.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Cross;
             this.richTextBox1.Location = new System.Drawing.Point(28, 134);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(177, 220);
             this.richTextBox1.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             this.button2.Cursor = System.Windows.Forms.Cursors.Cross;
             this.button2.Location = new System.Drawing.Point(263, 55);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(38, 19);
             this.button2.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             this.textBox2.Cursor = System.Windows.Forms.Cursors.Cross;
             this.textBox2.Location = new System.Drawing.Point(28, 56);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(231, 20);
             this.textBox2.TabIndex = 4;
@@ -111,7 +111,7 @@
             // 
             this.textBox1.Cursor = System.Windows.Forms.Cursors.Cross;
             this.textBox1.Location = new System.Drawing.Point(28, 88);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(274, 44);
@@ -128,7 +128,7 @@
             // 
             this.textBox3.Cursor = System.Windows.Forms.Cursors.Cross;
             this.textBox3.Location = new System.Drawing.Point(338, 11);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(183, 343);
@@ -149,7 +149,7 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
