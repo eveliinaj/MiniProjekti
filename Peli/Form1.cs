@@ -8,12 +8,39 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Runtime.InteropServices;
+
 namespace Peli
 {
     
     public partial class Form1 : Form
     {
-        
+        private const int HWND_TOPMOST = -1;
+        private const int HWND_NOTOPMOST = -2;
+        private const int SWP_NOSIZE = 0x0001;
+        private const int SWP_NOMOVE = 0x0002;
+        private const int SWP_NOZORDER = 0x0004;
+        private const int SWP_SHOWWINDOW = 0x0040;
+        const int offsetX = 100;
+        [DllImport("kernel32.dll")]
+        static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int y, int cx, int cy, int uFlags);
+
+
+        const int offsetY = 100;
+
+        const int SW_HIDE = 0;
+        const int SW_SHOW = 5;
+        bool isVisible = true;
+        IntPtr hWnd;
+
+
         Lemmikki lemmikki = new Lemmikki();
 
         Lemmikki uusilemmikki = new Lemmikki();
@@ -26,6 +53,7 @@ namespace Peli
         public Form1()
         {
             InitializeComponent();
+            hWnd = GetConsoleWindow();
         }
 
         public void Button1_Click(object sender, EventArgs e)
@@ -197,7 +225,13 @@ namespace Peli
                     lemmikki.Paijaa();
                     break;
                 case "etsi":
+                    SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_SHOW : SW_HIDE));
+                    ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);
+                    isVisible = !isVisible;
                     löydetyt = kartta.NäytäKartta();
+                    SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_HIDE : SW_SHOW));
+                    ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);
+                    isVisible = !isVisible;
                     foreach (var ruoka in löydetyt)
                     {
                         lemmikki.ruoat.Add(ruoka);
