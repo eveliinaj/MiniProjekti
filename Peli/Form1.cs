@@ -53,7 +53,7 @@ namespace Peli
         public List<Ruoka> randomruoat = new List<Ruoka>();
         Ruoka myrkkysieni = new Ruoka("myrkkysieni", -5);
         Ruoka karkki = new Ruoka("karkki", 10);
-
+        
         string ohjeet = "Yleisimmät komennot:" + Environment.NewLine
             + "syötä x = syötä haluamasi ruoka (esim. syötä omena)" + Environment.NewLine
             + "harjaa harjalla = harjaa eläintä" + Environment.NewLine
@@ -77,14 +77,10 @@ namespace Peli
             richTextBox1.Enabled = false;
 
             NäytäLemmikinKuva();
-            NäytäInventoryJaHealth();
+            NäytäInventory();
+            NäytäHealth();
+            
         }
-
-        //public Lemmikki LuoLemmikki()
-        //{
-        //Lemmikki lemmikki = new Lemmikki();
-        //    return lemmikki;
-        //}
 
         public void NäytäLemmikinKuva()
         {
@@ -131,16 +127,14 @@ namespace Peli
             }
         }
 
-        private void NäytäInventoryJaHealth()
+        private void NäytäInventory()
         {
             List<string> varasto = new List<string>();
             List<int> varastonmäärä = new List<int>();
             bool löytyi = false;
 
-            label1.Text = default;
             label2.Text = default;
 
-            label1.Text += Environment.NewLine + lemmikki.OverAllHealth;
 
             foreach (var r in lemmikki.ruoat)
             {
@@ -179,30 +173,50 @@ namespace Peli
                 label2.Text += Environment.NewLine + leikki.nimi;
             }
 
-            if (lemmikki.OverAllHealth < 100 && lemmikki.OverAllHealth > 70)
+        }
+        private void NäytäHealth()
+        {
+            label1.Text = default;
+            label1.Text += Environment.NewLine + lemmikki.OverAllHealth;
+            switch (lemmikki.OverAllHealth)
             {
-                textBox1.Text += Environment.NewLine + "Lemmikkisi näyttää voivan hyvin. Hyvää työtä!";
-            }
-            else if (lemmikki.OverAllHealth<100&& lemmikki.OverAllHealth > 70)
-            {
-                textBox1.Text += Environment.NewLine + "Lemmikkisi näyttää voivan hyvin. Hyvää työtä!";
-            }
-            else if (lemmikki.OverAllHealth < 71 && lemmikki.OverAllHealth > 50)
-            {
-                textBox1.Text += Environment.NewLine + "Lemmikilläsi on kaikki ok";
-            }
-            else if (lemmikki.OverAllHealth>0 && lemmikki.OverAllHealth< 11)
-            {
-                textBox1.Text += Environment.NewLine + "Lemmikkisi on hädänalainen. TEE JOTAIN!!!";
-            }
-            else if(lemmikki.OverAllHealth == 0)
-            {
-                textBox1.Text = "Lemmikki kuoli.";
-                textBox1.Text += Environment.NewLine + "Haluatko aloittaa uuden pelin? Vastaa Kyllä/Ei.";
-               
+                case 0:
+                    textBox1.Text = "Lemmikkisi kuoli. Haluatko aloittaa uuden pelin? Vastaa kyllä/ei.";
+                    break;
+                case int n when n <= 10:
+                    textBox1.Text = "Lemmikkisi on huonossa hapessa. TEE JOTAIN!!!";
+                    break;
+                case int n when n <= 30:
+                    textBox1.Text = "Hoidokkisi sinnittelee...";
+                    break;
+                case int n when n <= 40:
+                    textBox1.Text = "Hoidokkisi vointi voisi olla parempi.";
+                    break;
+                case int n when n <= 50:
+                    textBox1.Text = "Lemmikkisi vointi on stabiili.";
+                    break;
+                case int n when n <= 60:
+                    textBox1.Text = "Lemmikkisi näyttää voivan ihan ok!";
+                    break;
+                case int n when n <= 70:
+                    textBox1.Text = "Hienoa!";
+                    break;
+                case int n when n <= 80:
+                    textBox1.Text = "Teillä pyyhkii hyvin!";
+                    break;
+                case int n when n <= 90:
+                    textBox1.Text= "Lemmikkisi on tyytyväinen. Erinomaista työtä!";
+                    break;
+                case int n when n < 100:
+                    textBox1.Text = "Olet fantastinen eläintenhoitaja!";
+                    break;
+                case 100:
+                    textBox1.Text = "Perfection";
+                    break;
+                default:
+                    break;
             }
         }
-
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
            
@@ -292,7 +306,7 @@ namespace Peli
                     break;
 
                 default:
-                    textBox1.Text= "Virheellinen komento!";
+                    textBox1.Text+= Environment.NewLine + "Virheellinen komento!";
                     break;
             }
 
@@ -303,7 +317,8 @@ namespace Peli
             }
 
             NäytäLemmikinKuva();
-            NäytäInventoryJaHealth();
+            NäytäInventory();
+            NäytäHealth();
 
         }
 
@@ -333,7 +348,7 @@ namespace Peli
 
             textBox3.Text = ohjeet;
             vastaantulija = false;
-            NäytäInventoryJaHealth();
+            NäytäInventory();
         }
 
 
@@ -349,8 +364,9 @@ namespace Peli
             lemmikki.Hunger = lemmikki.Hunger - 1;
 
             lemmikki.OverAllHealth = lemmikki.Mieliala + lemmikki.Hygiene + lemmikki.Hunger;
-            NäytäInventoryJaHealth();
+            NäytäInventory();
             NäytäLemmikinKuva();
+            NäytäHealth();
         }
         private void Label1_Click_1(object sender, EventArgs e)
         {
