@@ -6,11 +6,15 @@ namespace Peli
 {
     public class Lemmikki
     {
+        #region lemmikkiä koskevat muuttujat
+
         public string name;
         public int overAllHealth;
+        #region overallhealth-property
         public int OverAllHealth
         {
             get { return overAllHealth; }
+            //health ei saa olla yli 100 tai alle 0
             set
             {
                 if (value > 100)
@@ -20,10 +24,13 @@ namespace Peli
                 overAllHealth = value;
             }
         }
+        #endregion
         private int mieliala = 20;
+        #region mieliala-property
         public int Mieliala
         {
             get { return mieliala; }
+            //mieliala ei saa olla yli 30
             set
             {
                 if (value >= 30)
@@ -31,10 +38,13 @@ namespace Peli
                 mieliala = value;
             }
         }
+        #endregion
         private int hygiene = 20;
+        #region hygienia-property
         public int Hygiene
         {
             get { return hygiene; }
+            //hygienia ei saa olla yli 30
             set
             {
                 if (value >= 30)
@@ -42,10 +52,13 @@ namespace Peli
                 hygiene = value;
             }
         }
+        #endregion
         private int hunger = 20;
+        #region nälkä-property
         public int Hunger
         {
             get { return hunger; }
+            //hunger ei saa olla yli 40
             set
             {
                 if (value >= 40)
@@ -53,7 +66,12 @@ namespace Peli
                 hunger = value;
             }
         }
+        #endregion
         public int ikä = 0;
+
+        #endregion
+
+        #region listojen tekeminen
 
         public List<Pesutapa> dummypesut = new List<Pesutapa>(); // luodaan dummypesut-niminen lista Pesutapa tietotyypillä
         Pesutapa pesu1 = new Pesutapa("hopeashampoo", 7); // luodaan dummypesut listaan hopeashampoo olio
@@ -65,33 +83,54 @@ namespace Peli
         public List<Pesutapa> pesut = new List<Pesutapa>();
         public List<Leikki> leikit = new List<Leikki>();
 
+        public void LisääDummyPesut()
+        {
+            //tämä lisää pesutapoja dummylistaan, josta ne arvotaan lemmikille pelin alkaessa
+            dummypesut.Add(sieni);
+            dummypesut.Add(pesu1);
+            dummypesut.Add(kylpy1);
+            dummypesut.Add(suihku1);
+        }
+        #endregion
         public Lemmikki(bool teeuusi)
         {
-            LisääDummyPesut();
+            //tätä konstruktoria käytetään kun tehdään uusi lemmikki kuolleen tilalle
+
+            LisääDummyPesut(); //metodi lisää dummylistaan pesutavat, tästä arvotaan lemmikille pesutapoja
             this.OverAllHealth = Hygiene + Hunger + Mieliala;
+
+            #region aloituksessa olevan ruoan määrän arpominen
+
             Random rnd = new Random();
             int ruoanmäärä = rnd.Next(2, 5);
+
             Ruoka ruoka = new Ruoka("omena", 2);
             Ruoka siemen = new Ruoka("siemen", 1);
             Ruoka salmiakki = new Ruoka("salmiakki", 3);
+
             for (int i = 0; i <= ruoanmäärä; i++)
             {
                 ruoat.Add(ruoka);
                 ruoat.Add(siemen);
                 ruoat.Add(salmiakki);
             }
+
+            #endregion
+
+            #region aloituksessa olevien pesutapojen arpominen
             int arvotutpesut;
-            for (int i = 0; i < 2; i++)
+
+            for (int i = 0; i < 3; i++)
             {
                 arvotutpesut = rnd.Next(0, dummypesut.Count);
                 pesut.Add(dummypesut[arvotutpesut]);
                 dummypesut.Remove(dummypesut[arvotutpesut]);
             }
 
-            Pesutapa pesu1 = new Pesutapa("silvershampoo", 7);
-            Pesutapa sieni = new Pesutapa("pesusieni", 5);
-            pesut.Add(sieni);
-            pesut.Add(pesu1);
+            #endregion
+
+            #region leikkitapojen lisääminen
+
             Leikki pallo = new Leikki("pallonpotkiminen", 8);
             Leikki kutitus = new Leikki("kutitus", 7);
             Leikki pelaa = new Leikki("miinaharava", -5);
@@ -100,18 +139,13 @@ namespace Peli
             leikit.Add(pallo);
             leikit.Add(pelaa);
             leikit.Add(tyyny);
+
+            #endregion
         }
 
         public Lemmikki()
         {
-
-        }
-        public void LisääDummyPesut()
-        {
-            dummypesut.Add(sieni);
-            dummypesut.Add(pesu1);
-            dummypesut.Add(kylpy1);
-            dummypesut.Add(suihku1);
+            // tyhjä konstruktori, tätä käytetään tiedoston lukemisessa
         }
 
         public int LaskeOverall()
@@ -119,6 +153,8 @@ namespace Peli
             OverAllHealth = hygiene + mieliala + hunger; //laskee lemmikin healthit yhteen kolmelta eri osa-alueelta
             return OverAllHealth;
         }
+
+        #region eläimen hoitamiseen liittyvät metodit
         public bool Pese(string pesu)
         {
             bool löytyykö = true;
@@ -149,6 +185,7 @@ namespace Peli
                     ruoat.Remove(ruoat[i]);
                     LaskeOverall();
                     löytyykö = true;
+
                     break;
                 }
                 else
@@ -166,6 +203,7 @@ namespace Peli
                     Mieliala += leikit[i].pisteet;
                     LaskeOverall();
                     löytyykö = true;
+
                     break;
                 }
                 else
@@ -184,8 +222,12 @@ namespace Peli
             hygiene += 3;
             LaskeOverall();
         }
+        #endregion
+
+        #region tallennus ja tiedoston luku
         public void Tallenna(Lemmikki tallennettava)
         {
+            //tallennetaan lemmikki-olion tiedot xml filuun serialize-metodilla
             XmlSerializer serializerTallenna = new XmlSerializer(typeof(Lemmikki));
             using (StreamWriter myWriter = new StreamWriter(@"..\..\TallennusXML\Tallennus.xml", false))
             {
@@ -194,6 +236,8 @@ namespace Peli
         }
         public Lemmikki LataaTallennettu<Lemmikki>()
         {
+            //ladataan tallennetun lemmikki-olion tiedot deserialize-metodilla
+
             XmlSerializer serializerLataa = new XmlSerializer(typeof(Lemmikki));
 
             Lemmikki luettu = default(Lemmikki);
@@ -210,5 +254,7 @@ namespace Peli
             }
             return luettu;
         }
+
+        #endregion
     }
 }

@@ -23,6 +23,7 @@ namespace Peli
 
         int palkinto = 0;
 
+        #region löydettävien ruokien lisääminen dummy-listaan ja löydetyt-listan tyhjennys
         public void RandomRuokaa()
         {
             Ruoka ruoka = new Ruoka("omena", 2); // luodaan omena
@@ -42,10 +43,15 @@ namespace Peli
                 löydetyt.Remove(ruoka);
             }
         }
+        #endregion
 
+        #region pelin toiminta, palauttaa listan löydetyistä ruoista
         public List<Ruoka> NäytäKartta()
         {
-            Console.OutputEncoding = Encoding.UTF8;
+
+            #region peliin liittyvien muuttujien asettaminen ja pelin käynnistys
+
+            Console.OutputEncoding = Encoding.UTF8;  //mahdollistetaan emojien näyttäminen utf8-koodilla
             RandomRuokaa(); 
             TyhjennäLöydettyjenLista();
 
@@ -59,6 +65,7 @@ namespace Peli
             int itemix = randomnumber.Next(1, näytönleveys - 2); //ensimmäisen tavaran lokaatio kun peli käynnistyy
             int itemiy = randomnumber.Next(1, näytönkorkeus - 2); 
 
+            //löydettyjen itemien määrä on nyt 0
             int itemisumma = 0;
 
             do
@@ -66,6 +73,9 @@ namespace Peli
                 KarttaPeli();
             } // Suorittaa karttapeliä niin kauan kunnes kartasta on löydetty kolme tavaraa
             while (itemisumma < 3);
+            #endregion
+
+            #region pelin toiminnallisuus
 
             void KarttaPeli() // Peli käynnistyy
             {
@@ -130,8 +140,11 @@ namespace Peli
                 }
             }
             return löydetyt;
+            #endregion
         }
+        #endregion
 
+        #region pelin käyttämiä metodeita
         public void Liikkuminen(int x, int y)
         {
             KoordinaattiMääreet newSijainti = new KoordinaattiMääreet()
@@ -179,6 +192,8 @@ namespace Peli
             Console.BackgroundColor = ConsoleColor.Green; // Määrittelee koko konsolisivun/kartan taustavärin, eli vihreä
             Console.Clear(); 
         }
+
+        #endregion
     }
 
     public class KoordinaattiMääreet
