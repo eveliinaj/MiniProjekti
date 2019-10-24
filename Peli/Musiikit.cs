@@ -14,7 +14,7 @@ namespace Peli
             
         }
 
-        public void VoittoMusa()
+        public void VoittoMusa() // Musiikki jota soitetaan kun lemmikin health menee 100%!
         {
             Console.Beep(2500, 400);
             Console.Beep(2500, 200);
@@ -32,28 +32,29 @@ namespace Peli
             Console.Beep(2500, 300);
             Console.Beep(3200, 1000);
         }
-        public void VakioPerusMusa()
-        {
-            Console.Beep(3200, 140);
-            Console.Beep(3200, 140);
-            Console.Beep(3200, 700);
-        }
+        //public void VakioPerusMusa() // Musiikki jota soitetaan vähän joka tilanteessa, mutta EI KÄYTÖSSÄ
+        //{
+        //    Console.Beep(3200, 140);
+        //    Console.Beep(3200, 140);
+        //    Console.Beep(3200, 700);
+        //}
 
-        public void Alle20Musa()
-        {
-            Console.Beep(2500, 300);
-            Console.Beep(2500, 300);
-            Console.Beep(2000, 300);
-            Console.Beep(2500, 300);
-            Console.Beep(2500, 300);
-            Console.Beep(2000, 300);
-            Console.Beep(2000, 300);
-            Console.Beep(2500, 300);
-            Console.Beep(2500, 300);
-        }
-        public void GameOverMusa()
+        //public void Alle20Musa() // Musiikki jota soitetaan kun health menee alle 20, mutta EI KÄYTÖSSÄ
+        //{
+        //    Console.Beep(2500, 300);
+        //    Console.Beep(2500, 300);
+        //    Console.Beep(2000, 300);
+        //    Console.Beep(2500, 300);
+        //    Console.Beep(2500, 300);
+        //    Console.Beep(2000, 300);
+        //    Console.Beep(2000, 300);
+        //    Console.Beep(2500, 300);
+        //    Console.Beep(2500, 300);
+        //}
+        public void GameOverMusa() // Musiikki jota soitetaan kun lemmikki kuolee
         {
             Console.Beep(500, 1000);
+
         }
     }
 }

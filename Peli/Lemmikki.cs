@@ -20,7 +20,7 @@ namespace Peli
                 overAllHealth = value;
             }
         }
-        private int mieliala = 26;
+        private int mieliala = 20;
         public int Mieliala
         {
             get { return mieliala; }
@@ -31,7 +31,7 @@ namespace Peli
                 mieliala = value;
             }
         }
-        private int hygiene = 27;
+        private int hygiene = 20;
         public int Hygiene
         {
             get { return hygiene; }
@@ -42,7 +42,7 @@ namespace Peli
                 hygiene = value;
             }
         }
-        private int hunger = 26;
+        private int hunger = 20;
         public int Hunger
         {
             get { return hunger; }
@@ -53,6 +53,8 @@ namespace Peli
                 hunger = value;
             }
         }
+        public int ikä = 0;
+
         public List<Pesutapa> dummypesut = new List<Pesutapa>();
         Pesutapa pesu1 = new Pesutapa("hopeashampoo", 7);
         Pesutapa sieni = new Pesutapa("pesusieni", 5);
