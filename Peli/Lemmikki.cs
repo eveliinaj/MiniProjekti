@@ -53,6 +53,8 @@ namespace Peli
                 hunger = value;
             }
         }
+        public int ikä = 0;
+
         public List<Pesutapa> dummypesut = new List<Pesutapa>();
         Pesutapa pesu1 = new Pesutapa("hopeashampoo", 7);
         Pesutapa sieni = new Pesutapa("pesusieni", 5);

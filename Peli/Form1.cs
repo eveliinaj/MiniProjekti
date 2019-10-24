@@ -16,6 +16,7 @@ namespace Peli
 
     public partial class Form1 : Form
     {
+        //KONSOLIPELIN ASETTELUUN LIITTYVÄ KOODI ALKAA
         private const int HWND_TOPMOST = -1;
         private const int HWND_NOTOPMOST = -2;
         private const int SWP_NOSIZE = 0x0001;
@@ -33,23 +34,27 @@ namespace Peli
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int y, int cx, int cy, int uFlags);
 
-
         const int offsetY = 100;
 
         const int SW_HIDE = 0;
         const int SW_SHOW = 5;
         bool isVisible = true;
         IntPtr hWnd;
+        //KONSOLIPELIN ASETTELUUN LIITTYVÄ KOODI LOPPUU
 
         Musiikit musiikit = new Musiikit();
-
         Lemmikki lemmikki = new Lemmikki();
-
         Kartta kartta = new Kartta();
+        
+        List<Ruoka> löydetyt = new List<Ruoka>(); //tänne lisätään kartta-pelistä löydetyt ruoat
 
-        List<Ruoka> löydetyt = new List<Ruoka>();
 
-        bool teeuusi = true;
+      
+        bool vaihdettu = false;
+
+        bool teeuusi = true; //käytetään erottamaan eri konstruktorit tallennetun olion ja uuden olion välillä
+
+        //Pelin vastaantulijaan liittyvää alapuolella
 
         bool vastaantulija = false;
         bool tehdäänvaihto = false;
@@ -58,6 +63,7 @@ namespace Peli
         Ruoka myrkkysieni = new Ruoka("myrkkysieni", -5);
         Ruoka karkki = new Ruoka("karkki", 15);
 
+        //ohjeet, jotka näkyvät defaulttina textboxissa
         string ohjeet = "Yleisimmät komennot:" + Environment.NewLine
             + "syötä x = syötä haluamasi ruoka (esim. syötä omena)" + Environment.NewLine
             + "harjaa = harjaa eläintä" + Environment.NewLine
@@ -67,6 +73,7 @@ namespace Peli
 
         public Form1()
         {
+            //nämä tapahtuu pelin käynnistyessä
             InitializeComponent();
             hWnd = GetConsoleWindow();
             randomruoat.Add(myrkkysieni);
@@ -77,6 +84,7 @@ namespace Peli
 
         public void Button1_Click(object sender, EventArgs e)
         {
+            //aloita peli-nappulan toiminnot
             richTextBox1.ReadOnly = true;
             richTextBox1.ScrollBars = RichTextBoxScrollBars.None;
             richTextBox1.Enabled = false;
@@ -110,7 +118,7 @@ namespace Peli
             return;
         }
 
-        public void NäytäLemmikinKuva()
+        public void NäytäLemmikinKuva() // Lemmikin kuva vaihdetaan sen healthin mukaan
         {
             switch (lemmikki.OverAllHealth)
             {
@@ -155,14 +163,14 @@ namespace Peli
             }
         }
 
-        private void NäytäInventory()
+        private void NäytäInventory() // näytetään inventory
         {
             List<string> varasto = new List<string>();
             List<int> varastonmäärä = new List<int>();
             bool löytyi = false;
+            //ylläolevat ovat varaston näyttämistä "3x asia"-muodossa varten
 
             label2.Text = default;
-
 
             foreach (var r in lemmikki.ruoat)
             {
@@ -206,8 +214,7 @@ namespace Peli
         {
             MusiikkiaHealthinMukaan();
 
-            label1.Text = default;
-            label1.Text += Environment.NewLine + lemmikki.OverAllHealth;
+            label1.Text = $"Mieliala: {lemmikki.OverAllHealth}";
             switch (lemmikki.OverAllHealth)
             {
                 case 0:
@@ -229,7 +236,7 @@ namespace Peli
                     textBox1.Text = "Lemmikkisi näyttää voivan ihan ok!";
                     break;
                 case int n when n <= 70:
-                    textBox1.Text = "Hienoa!";
+                    textBox1.Text = "Hyvä meininki!";
                     break;
                 case int n when n <= 80:
                     textBox1.Text = "Teillä pyyhkii hyvin!";
@@ -246,6 +253,11 @@ namespace Peli
                 default:
                     break;
             }
+        }
+
+        public static void NäytäIkä()
+        {
+
         }
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -279,98 +291,131 @@ namespace Peli
                 string vaihdettava = textBox2.Text;
                 TeeVaihtoKauppa(vaihdettava);
                 tehdäänvaihto = false;
+                vaihdettu = true;
             }
-
-            switch (splitattu[0])
+            if (!vaihdettu)
             {
-                case "harjaa":
-                    if(splitattu.Length==1)
-                    lemmikki.Harjaa();
-                    break;
-                case "pese":
-                    bool onko=lemmikki.Pese(splitattu[1]);
-                    if (!onko)
-                        textBox2.Text = $"{splitattu[1]} ei ole varastossa";
-                    break;
-                case "syötä":
-                bool löytyykö=lemmikki.Syötä(splitattu[1]);
-                    if (!löytyykö)
-                        textBox2.Text = $"{splitattu[1]} ei ole varastossa";
-                    break;
-                case "leiki":
-                    bool jooko= lemmikki.Leiki(splitattu[1]);
-                    if (!jooko)
-                        textBox2.Text = $"{splitattu[1]} ei ole varastossa";
-                    break;
-                case "paijaa":
-                    if (splitattu.Length == 1)
-                        lemmikki.Paijaa();
-                    break;
-                case "etsi":
-                    SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_SHOW : SW_HIDE));
-                    ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);
-                    isVisible = !isVisible;
+                switch (splitattu[0])
+                {
+                    case "harjaa":
+                        if (splitattu.Length == 1)
+                            lemmikki.Harjaa();
+                        break;
+                    case "pese":
+                        if (splitattu.Length == 1)
+                            textBox2.Text = "Et antanut esineen nimeä";
+                        else {
+                            bool onko = lemmikki.Pese(splitattu[1]);
+                            if (!onko)
+                                textBox2.Text = $"{splitattu[1]} ei ole varastossa";
+                        }
+                        break;
+                    case "syötä":
+                        if (splitattu.Length == 1)
+                            textBox2.Text = "Et antanut esineen nimeä";
+                        else {
+                            bool löytyykö = lemmikki.Syötä(splitattu[1]);
+                            if(!löytyykö)
+                            textBox2.Text = $"{splitattu[1]} ei ole varastossa";
+                        }
+                        break;
+                    case "leiki":
+                        if (splitattu.Length == 1)
+                            lemmikki.Harjaa();
+                        else
+                        {
+                        bool jooko = lemmikki.Leiki(splitattu[1]);
+                        if (!jooko)
+                            textBox2.Text = $"{splitattu[1]} ei ole varastossa";
+                        }
+                        break;
+                        
+                    case "paijaa":
+                        if (splitattu.Length == 1)
+                            lemmikki.Paijaa();
+                        break;
+                    case "etsi":
+                        SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_SHOW : SW_HIDE));
+                        ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);
+                        isVisible = !isVisible;
 
-                    löydetyt = kartta.NäytäKartta();
+                        löydetyt = kartta.NäytäKartta();
 
-                    SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_HIDE : SW_SHOW));
-                    ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);
-                    isVisible = !isVisible;
+                        SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_HIDE : SW_SHOW));
+                        ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);
+                        isVisible = !isVisible;
 
-                    textBox3.Text = "Jee! Löysit seuraavat asiat:" + Environment.NewLine;
+                        textBox3.Text = "Jee! Löysit seuraavat asiat:" + Environment.NewLine;
 
-                    foreach (var ruoka in löydetyt)
-                    {
-                        lemmikki.ruoat.Add(ruoka);
-                        textBox3.Text += ruoka.ruoanNimi + Environment.NewLine;
-                    }
+                        foreach (var ruoka in löydetyt)
+                        {
+                            lemmikki.ruoat.Add(ruoka);
+                            textBox3.Text += ruoka.ruoanNimi + Environment.NewLine;
+                        }
 
-                    for (int i = löydetyt.Count - 1; i >= 0; i--)
-                    {
-                        löydetyt.Remove(löydetyt[i]);
-                    }
+                        for (int i = löydetyt.Count - 1; i >= 0; i--)
+                        {
+                            löydetyt.Remove(löydetyt[i]);
+                        }
 
-                    VastaanTulija();
+                        VastaanTulija();
 
-                    break;
+                        break;
 
-                case "kyllä":
-                    if (lemmikki.OverAllHealth == 0)
-                    {
-                        Lemmikki uusilemmikki = new Lemmikki(teeuusi);
-                        lemmikki = uusilemmikki;
-                    }
+                    case "kyllä":
+                        if (lemmikki.OverAllHealth == 0)
+                        {
+                            Lemmikki uusilemmikki = new Lemmikki(teeuusi);
+                            lemmikki = uusilemmikki;
+                        }
 
-                    if (vastaantulija == true)
-                    {
-                        tehdäänvaihto = true;
+                        if (vastaantulija == true)
+                        {
+                            tehdäänvaihto = true;
 
-                        textBox3.Text += Environment.NewLine + Environment.NewLine
-                            + "Minkä ruoan haluat antaa vaihdossa?";
-                        vastaantulija = false;
-                    }
-                    break;
+                            textBox3.Text += Environment.NewLine + Environment.NewLine
+                                + "Minkä ruoan haluat antaa vaihdossa?";
+                            vastaantulija = false;
+                        }
+                        break;
 
-                case "ei":
-                    textBox3.Text = ohjeet;
-                    break;
+                    case "ei":
+                        textBox3.Text = ohjeet;
+                        break;
 
-                case "poistu":
-                    lemmikki.Tallenna(lemmikki);
-                    break;
+                    case "poistu":
+                        lemmikki.Tallenna(lemmikki);
+                        this.Close();
+                        break;
 
-                default:
 
-                    textBox1.Text += Environment.NewLine + "Virheellinen komento!";
-                    textBox2.Text= "Virheellinen komento!";
-                    break;
+                    default:
+
+                        foreach (var item in lemmikki.ruoat)
+                        {
+                            if (splitattu[0] == item.ruoanNimi)
+                                tehdäänvaihto = true;
+                        }
+
+                        if (!tehdäänvaihto)
+                            textBox2.Text = "Virheellinen komento!";
+                        break;
+                }
+
             }
 
+                else
+                vaihdettu = false;
+
+                //default:
+                //    textBox1.Text += Environment.NewLine + "Virheellinen komento!";
+                //    textBox2.Text= "Virheellinen komento!";
+                //    break;
+            
 
             NäytäLemmikinKuva();
             NäytäInventory();
             NäytäHealth();
-
         }
 
         private void VastaanTulija()
@@ -422,7 +467,6 @@ namespace Peli
                 lemmikki.Hunger = lemmikki.Hunger - 1;
 
             lemmikki.OverAllHealth = lemmikki.Mieliala + lemmikki.Hygiene + lemmikki.Hunger;
-            NäytäInventory();
             NäytäLemmikinKuva();
             NäytäHealth();
         }
@@ -435,7 +479,6 @@ namespace Peli
 
         }
 
-
         private void TextBox2_TextChanged(object sender, EventArgs e)
         {
 
@@ -444,8 +487,6 @@ namespace Peli
         private void Timer1_Tick(object sender, EventArgs e)
         {
             LaskeMieliAlaa();
-            //timer1.Stop();
-            //timer1.Start();
         }
 
 
@@ -455,6 +496,17 @@ namespace Peli
         }
 
         private void TextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            lemmikki.ikä++;
+            label3.Text = $"Ikä :{lemmikki.ikä.ToString()} vuotta";
+        }
+
+        private void Label3_Click_1(object sender, EventArgs e)
         {
 
         }

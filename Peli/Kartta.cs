@@ -9,7 +9,7 @@ namespace Peli
 
     public class Kartta
     {
-        
+
         public KoordinaattiMääreet Sijainti { get; set; }
 
         public List<Ruoka> dummyruoat = new List<Ruoka>(); 
@@ -45,6 +45,7 @@ namespace Peli
 
         public List<Ruoka> NäytäKartta()
         {
+            Console.OutputEncoding = Encoding.UTF8;
             RandomRuokaa(); 
             TyhjennäLöydettyjenLista();
 
@@ -158,7 +159,7 @@ namespace Peli
 
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.SetCursorPosition(Sijainti.X, Sijainti.Y);
-            Console.Write('\u2103'); // printtaa jalanjäljet kartassa liikkuvan lemmikin perään
+            Console.Write('\u2665'); // printtaa jalanjäljet kartassa liikkuvan lemmikin perään
             //Console.Write("👣");
         }
 
