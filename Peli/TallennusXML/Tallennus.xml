@@ -1,33 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Lemmikki xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <overAllHealth>79</overAllHealth>
+  <dummypesut>
+    <Pesutapa>
+      <Nimi>pesusieni</Nimi>
+      <Pisteet>5</Pisteet>
+    </Pesutapa>
+    <Pesutapa>
+      <Nimi>hopeashampoo</Nimi>
+      <Pisteet>7</Pisteet>
+    </Pesutapa>
+  </dummypesut>
   <ruoat>
     <Ruoka>
-      <ruoanNimi>salmiakki</ruoanNimi>
-      <pisteet>3</pisteet>
+      <ruoanNimi>omena</ruoanNimi>
+      <pisteet>2</pisteet>
+    </Ruoka>
+    <Ruoka>
+      <ruoanNimi>siemen</ruoanNimi>
+      <pisteet>1</pisteet>
     </Ruoka>
     <Ruoka>
       <ruoanNimi>salmiakki</ruoanNimi>
       <pisteet>3</pisteet>
     </Ruoka>
     <Ruoka>
-      <ruoanNimi>salmiakki</ruoanNimi>
-      <pisteet>3</pisteet>
+      <ruoanNimi>omena</ruoanNimi>
+      <pisteet>2</pisteet>
+    </Ruoka>
+    <Ruoka>
+      <ruoanNimi>siemen</ruoanNimi>
+      <pisteet>1</pisteet>
     </Ruoka>
     <Ruoka>
       <ruoanNimi>salmiakki</ruoanNimi>
       <pisteet>3</pisteet>
     </Ruoka>
     <Ruoka>
-      <ruoanNimi>salmiakki</ruoanNimi>
-      <pisteet>3</pisteet>
+      <ruoanNimi>omena</ruoanNimi>
+      <pisteet>2</pisteet>
+    </Ruoka>
+    <Ruoka>
+      <ruoanNimi>siemen</ruoanNimi>
+      <pisteet>1</pisteet>
     </Ruoka>
     <Ruoka>
       <ruoanNimi>salmiakki</ruoanNimi>
       <pisteet>3</pisteet>
     </Ruoka>
     <Ruoka>
-      <ruoanNimi>salmiakki</ruoanNimi>
-      <pisteet>3</pisteet>
+      <ruoanNimi>omena</ruoanNimi>
+      <pisteet>2</pisteet>
+    </Ruoka>
+    <Ruoka>
+      <ruoanNimi>siemen</ruoanNimi>
+      <pisteet>1</pisteet>
     </Ruoka>
     <Ruoka>
       <ruoanNimi>salmiakki</ruoanNimi>
@@ -36,12 +63,12 @@
   </ruoat>
   <pesut>
     <Pesutapa>
-      <Nimi>pesusieni</Nimi>
-      <Pisteet>5</Pisteet>
+      <Nimi>suihku</Nimi>
+      <Pisteet>3</Pisteet>
     </Pesutapa>
     <Pesutapa>
-      <Nimi>silvershampoo</Nimi>
-      <Pisteet>7</Pisteet>
+      <Nimi>vaahtokylpy</Nimi>
+      <Pisteet>10</Pisteet>
     </Pesutapa>
     <Pesutapa>
       <Nimi>pesusieni</Nimi>
@@ -54,24 +81,24 @@
   </pesut>
   <leikit>
     <Leikki>
-      <nimi>kutita</nimi>
+      <nimi>kutitus</nimi>
       <pisteet>7</pisteet>
     </Leikki>
     <Leikki>
-      <nimi>potki palloa</nimi>
+      <nimi>pallonpotkiminen</nimi>
       <pisteet>8</pisteet>
     </Leikki>
     <Leikki>
-      <nimi>kutita</nimi>
-      <pisteet>7</pisteet>
+      <nimi>miinaharava</nimi>
+      <pisteet>-5</pisteet>
     </Leikki>
     <Leikki>
-      <nimi>potki palloa</nimi>
-      <pisteet>8</pisteet>
+      <nimi>tyynysota</nimi>
+      <pisteet>5</pisteet>
     </Leikki>
   </leikit>
-  <OverAllHealth>88</OverAllHealth>
-  <Mieliala>30</Mieliala>
-  <Hygiene>30</Hygiene>
-  <Hunger>28</Hunger>
+  <OverAllHealth>79</OverAllHealth>
+  <Mieliala>26</Mieliala>
+  <Hygiene>27</Hygiene>
+  <Hunger>26</Hunger>
 </Lemmikki>

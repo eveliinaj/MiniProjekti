@@ -49,6 +49,8 @@ namespace Peli
 
         List<Ruoka> löydetyt = new List<Ruoka>();
 
+        bool teeuusi = true;
+
         bool vastaantulija = false;
         bool tehdäänvaihto = false;
         int vastaantulijanruoka = default;
@@ -335,7 +337,7 @@ namespace Peli
                 case "kyllä":
                     if (lemmikki.OverAllHealth == 0)
                     {
-                        Lemmikki uusilemmikki = new Lemmikki();
+                        Lemmikki uusilemmikki = new Lemmikki(teeuusi);
                         lemmikki = uusilemmikki;
                     }
 
