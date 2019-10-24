@@ -92,24 +92,24 @@ namespace Peli
 
         public void MusiikkiaHealthinMukaan() //virheellinen komento tulee vaihdossa
         {
-            ////testiiiiii
-
-            if (lemmikki.OverAllHealth == 100) //toimii
+            if (lemmikki.OverAllHealth == 100) //tarkistetaan onko lemmikin health == 100
             {
-                musiikit.VoittoMusa();
+                musiikit.VoittoMusa(); //  jos lemmikin health on tasan 100 niin soitetaan Musiikit luokassa
+                                       //  sävelletty voittomusa!
             }
             //if (lemmikki.OverAllHealth >= 21 && lemmikki.OverAllHealth < 100) 
             //{
-            //    musiikit.VakioPerusMusa(); ///////JATKA TÄSTÄ !!!!!!!
-            //}
+            //    musiikit.VakioPerusMusa(); //   // Oli alunperin suunnitelmissa lisätä enemmän musiikkia, mutta
+            //}                                      piippailut alkoivat rasittamaan ja luovuimme ajatuksesta!
+
             //if (lemmikki.OverAllHealth == 20 && lemmikki.OverAllHealth < 20)
-            //{
+            //{   // tämä olisi soittanut musiikkia jatkuvasti kun peli päivittyy ja health on 20 tai sen alle
             //    musiikit.Alle20Musa();
             //}
-            if (lemmikki.OverAllHealth <= 0)
+            if (lemmikki.OverAllHealth <= 0) // tarkistetaan onko lemmikin health 0 tai vähemmän
             {
-                musiikit.GameOverMusa();
-            }
+                musiikit.GameOverMusa(); // tämä soittaa musiikkia joka on sävelletty
+            }                            // Musiikit luokassa aina kun lemmikin health on 0 
             return;
         }
 

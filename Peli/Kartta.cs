@@ -9,54 +9,64 @@ namespace Peli
 
     public class Kartta
     {
+        
         public KoordinaattiMääreet Sijainti { get; set; }
 
-        public List<Ruoka> randomruoat = new List<Ruoka>();
-        public List<Ruoka> löydetyt = new List<Ruoka>();
+        public List<Ruoka> dummyruoat = new List<Ruoka>(); 
+        // Ensin luodaan dummyruoat lista jonne lisätään kaikki löydettävät ruoat, 
+        // eli kaikki vaihtoehdot jotka voi löytää kartasta, tässä tapauksessa siis alempana
+        // olevat RandomRuokaa konstruktorin sisällä olevat: omena, siemen ja salmiakki
+
+        public List<Ruoka> löydetyt = new List<Ruoka>(); 
+        // Uusi lista jonne lisätään löydetyt ruoat jotka on random-
+        // generoitu vaihtoehdoista jotka olivat dummyruoat listan sisällä
 
         int palkinto = 0;
 
         public void RandomRuokaa()
         {
-            Ruoka ruoka = new Ruoka("omena", 2);
-            randomruoat.Add(ruoka);
-            Ruoka siemen = new Ruoka("siemen", 1);
-            randomruoat.Add(siemen);
-            Ruoka salmiakki = new Ruoka("salmiakki", 3);
-            randomruoat.Add(salmiakki);
+            Ruoka ruoka = new Ruoka("omena", 2); // luodaan omena
+            dummyruoat.Add(ruoka); // lisätään omena dummyruoat listaan
+            Ruoka siemen = new Ruoka("siemen", 1); // luodaan siemen
+            dummyruoat.Add(siemen); // lisätään siemen dummyruoat listaan
+            Ruoka salmiakki = new Ruoka("salmiakki", 3); // luodaan salmiakki
+            dummyruoat.Add(salmiakki); // lisätään salmiakki dummyruoat listaan
         }
 
-        public void TyhjennäLöydettyjenLista()
+        public void TyhjennäLöydettyjenLista() 
         {
             foreach (var ruoka in löydetyt)
-            {
+            { // tyhjennetään löydetyt lista jotta lista olisi aina tyhjä kun karttapeli käynnistetään uudelleen
+              // eikä kävisi niin että kerran löydetyt tavarat lisätään aina vaan uudelleen ja uudelleen
+              // lemmikin varastoinventoryyn kun karttapeli lopetetaan
                 löydetyt.Remove(ruoka);
             }
         }
 
         public List<Ruoka> NäytäKartta()
         {
-            RandomRuokaa();
+            RandomRuokaa(); 
             TyhjennäLöydettyjenLista();
 
-            Console.WindowHeight = 26;
-            Console.WindowWidth = 64;
+            Console.WindowHeight = 26; // määritellään konsoli-ikkunan korkeus
+            Console.WindowWidth = 64; // määritellään konsoli-ikkunan leveys
             int näytönleveys = Console.WindowWidth;
             int näytönkorkeus = Console.WindowHeight;
 
-            Random randomnumber = new Random();
+            Random randomnumber = new Random(); // kutsutaan random luokkaa
 
-            int itemix = randomnumber.Next(0, näytönleveys);
-            int itemiy = randomnumber.Next(0, näytönkorkeus);
+            int itemix = randomnumber.Next(1, näytönleveys - 2);
+            int itemiy = randomnumber.Next(1, näytönkorkeus - 2);
+
             int itemisumma = 0;
 
             do
             {
-                Peli();
-            }
+                KarttaPeli();
+            } // Suorittaa karttapeliä niin kauan kunnes kartasta on löydetty kolme tavaraa
             while (itemisumma < 3);
 
-            void Peli()
+            void KarttaPeli() // Peli käynnistyy
             {
                 Taustaväri();
                 Itemit();
@@ -69,43 +79,45 @@ namespace Peli
 
                 Liikkuminen(0, 0);
 
-                ConsoleKeyInfo Näppäimet;
+                ConsoleKeyInfo Näppäimet; // kuvataan käyttäjän painamia näppäimiä
                 while ((Näppäimet = Console.ReadKey(true)).Key != ConsoleKey.Escape)
                 {
                     switch (Näppäimet.Key)
                     {
-                        case ConsoleKey.UpArrow:
+                        case ConsoleKey.UpArrow: // nuoli ylöspäin
                             Liikkuminen(0, -1);
                             break;
 
-                        case ConsoleKey.RightArrow:
+                        case ConsoleKey.RightArrow: // nuoli oikealle
                             Liikkuminen(1, 0);
                             break;
 
-                        case ConsoleKey.DownArrow:
+                        case ConsoleKey.DownArrow: // nuoli alaspäin
                             Liikkuminen(0, 1);
                             break;
 
-                        case ConsoleKey.LeftArrow:
+                        case ConsoleKey.LeftArrow: // nuoli vasemmalle
                             Liikkuminen(-1, 0);
                             break;
                     }
 
-                    if (itemix == Sijainti.X && itemiy == Sijainti.Y)
+                    if (itemix == Sijainti.X && itemiy == Sijainti.Y) 
+                        // Jos pelaajan sijainti kartassa sekä randomilla generoidun, karttaan ilmestyneen
+                        // tavaran sijainti on sama niin:
                     {
-
+                        // generoidaan randomis 
                         itemix = randomnumber.Next(1, näytönleveys - 2);
                         itemiy = randomnumber.Next(1, näytönkorkeus - 2);
-                        Console.Beep(750, 550);
+                        Console.Beep(750, 550); // Piippausääni kun kartasta löytää tavaran
 
                         itemisumma++;
 
-                        Random random = new Random();
-                        palkinto = random.Next(0, randomruoat.Count);
+                        Random random = new Random(); // kutsutaan random luokkaa
+                        palkinto = random.Next(0, dummyruoat.Count); 
 
-                        löydetyt.Add(randomruoat[palkinto]);
+                        löydetyt.Add(dummyruoat[palkinto]); // lisätään löydetty tavara dummyruoat listaan
 
-                        Itemit();
+                        Itemit(); // kutsutaan Itemit metodia
 
                         return;
                     }
@@ -114,8 +126,8 @@ namespace Peli
                 void Itemit()
                 {
                     Console.SetCursorPosition(itemix, itemiy);
-                    Console.BackgroundColor = ConsoleColor.Red; // taustaväri itemin alle
-                    Console.Write("X"); // kuva joka piirtyy itemin päälle
+                    Console.BackgroundColor = ConsoleColor.Red; // Taustaväri kartassa liikkuvan lemmikin alle
+                    Console.Write("X"); // kuva joka piirtyy kartassa liikkuvan lemmikin päälle
                 }
             }
             return löydetyt;
@@ -131,21 +143,25 @@ namespace Peli
 
             if (Liiku(newSijainti))
             {
-                PolkuPerässä();
+                PolkuPerässä(); // kutsutaan metodia joka piirtää janaa kartassa liikkuvan lemmikin perässä
 
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.SetCursorPosition(newSijainti.X, newSijainti.Y);
-                Console.Write("■"); // Tässä määritellään kuva lemmikin päällä
+                Console.Write("■"); // Tässä määritellään kuva lemmikin päällä kartassa
 
                 Sijainti = newSijainti;
             }
         }
 
-        public void PolkuPerässä() // PolkuPerässä Piirtää väriä ja reittiä lemmikin perässä
+        public void PolkuPerässä() // Tämä Piirtää väriä ja reittiä lemmikin perässä, eli tummanvihreää
         {
+            //Console.OutputEncoding = Encoding.UTF8;
+            //var jalanjäljet = char.ConvertFromUtf32(0x1F642);
+
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.SetCursorPosition(Sijainti.X, Sijainti.Y);
-            Console.Write(" ");
+            Console.Write('\u2103'); // printtaa jalanjäljet kartassa liikkuvan lemmikin perään
+            //Console.Write("👣");
         }
 
         public bool Liiku(KoordinaattiMääreet koordinaatti) // Liikkuminen kartalla
@@ -161,15 +177,15 @@ namespace Peli
 
         public void Taustaväri()
         {
-            Console.BackgroundColor = ConsoleColor.Green; // Määrittelee koko konsolisivun/kartan taustavärin
-            Console.Clear(); //Tärkeä!
+            Console.BackgroundColor = ConsoleColor.Green; // Määrittelee koko konsolisivun/kartan taustavärin, eli vihreä
+            Console.Clear(); 
         }
     }
 
     public class KoordinaattiMääreet
     {
-        public int X { get; set; } //VASEN koordinaatti property
-        public int Y { get; set; } //YLÖS koordinaatti property
+        public int X { get; set; } //X koordinaatti property
+        public int Y { get; set; } //Y koordinaatti property
     }
 
 
