@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Peli
 {
@@ -97,14 +99,22 @@ namespace Peli
                 dummypesut.Remove(dummypesut[arvotutpesut]);
             }
 
-            //Harjat harja = new Harjat("harja", 5);
-            //harjat.Add(harja);
+           
+
+            Pesutapa pesu1 = new Pesutapa("silvershampoo", 7);
+            Pesutapa sieni = new Pesutapa("pesusieni", 5);
+            pesut.Add(sieni);
+            pesut.Add(pesu1);
+            Leikki pallo = new Leikki("pallonpotkiminen", 8);
+            Leikki kutitus = new Leikki("kutitus", 7);
+            Leikki pelaa = new Leikki("miinaharava", -5);
+            Leikki tyyny = new Leikki("tyynysota", 5);
 
 
-            Leikki pallo = new Leikki("potki palloa", 8);
-            Leikki kutitus = new Leikki("kutita", 7);
             leikit.Add(kutitus);
             leikit.Add(pallo);
+            leikit.Add(pelaa);
+            leikit.Add(tyyny);
 
         }
 
@@ -137,23 +147,29 @@ namespace Peli
             return OverAllHealth;
         }
 
-        public void Pese(string pesu)
+        public bool Pese(string pesu)
         {
-            int indeksi = 0;
+            bool löytyykö = true;
+            
             for (int i = 0; i < pesut.Count; i++)
             {
                 if (pesut[i].Nimi.Equals(pesu))
                 {
-                    indeksi = i;
+                    
+                    löytyykö = true;
+                    Hygiene += pesut[i].Pisteet;
+                    LaskeOverall();
+                    break;
                 }
+                else
+                    löytyykö = false;
             }
-            Hygiene += pesut[indeksi].Pisteet;
-            LaskeOverall();
-
+            return löytyykö;
         }
 
-        public void Syötä(string ruoka)
+        public bool Syötä(string ruoka)
         {
+            bool löytyykö = true;
             for (int i = 0; i < ruoat.Count; i++)
             {
                 if (ruoat[i].ruoanNimi.Equals(ruoka))
@@ -161,15 +177,31 @@ namespace Peli
                     Hunger += ruoat[i].pisteet;
                     ruoat.Remove(ruoat[i]);
                     LaskeOverall();
+                    löytyykö = true;
                     break;
                 }
+                else
+                    löytyykö = false;
             }
+            return löytyykö;
         }
 
-        internal void Leiki()
+        public bool Leiki(string leikki)
         {
-            Mieliala += leikit[0].pisteet;
-            LaskeOverall();
+            bool löytyykö = true;
+            for (int i = 0; i < leikit.Count; i++)
+            {
+                if (leikit[i].nimi.Equals(leikki))
+                {
+                    Mieliala += leikit[i].pisteet;
+                   LaskeOverall();
+                    löytyykö = true;
+                    break;
+                }
+                else
+                    löytyykö = false;
+            }
+            return löytyykö;
 
         }
 
@@ -180,6 +212,40 @@ namespace Peli
 
         }
 
-        
+        internal void Harjaa()
+        {
+            Mieliala += 2;
+            hygiene += 3;
+            LaskeOverall();
+        }
+        public void Tallenna(Lemmikki tallennettava)
+        {
+            XmlSerializer serializerTallenna = new XmlSerializer(typeof(Lemmikki));
+
+            using (StreamWriter myWriter = new StreamWriter(@"..\..\TallennusXML\Tallennus.xml", false))
+            {
+                serializerTallenna.Serialize(myWriter, tallennettava);
+            }
+        }
+
+        public Lemmikki LataaTallennettu<Lemmikki>()
+        {
+            XmlSerializer serializerLataa = new XmlSerializer(typeof(Lemmikki));
+
+            Lemmikki luettu = default(Lemmikki);
+            if (string.IsNullOrEmpty(@"..\..\TallennusXML\Tallennus.xml")) return default(Lemmikki);
+            try
+            {
+                StreamReader xmlStream = new StreamReader(@"..\..\TallennusXML\Tallennus.xml");
+                luettu = (Lemmikki)serializerLataa.Deserialize(xmlStream);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return luettu;
+
+        }
+
     }
 }
