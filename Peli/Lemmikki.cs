@@ -88,10 +88,14 @@ namespace Peli
             Pesutapa sieni = new Pesutapa("pesusieni", 5);
             pesut.Add(sieni);
             pesut.Add(pesu1);
-            Leikki pallo = new Leikki("potki palloa", 8);
-            Leikki kutitus = new Leikki("kutita", 7);
+            Leikki pallo = new Leikki("pallonpotkiminen", 8);
+            Leikki kutitus = new Leikki("kutitus", 7);
+            Leikki pelaa = new Leikki("miinaharava", -5);
+            Leikki tyyny = new Leikki("tyynysota", 5);
             leikit.Add(kutitus);
             leikit.Add(pallo);
+            leikit.Add(pelaa);
+            leikit.Add(tyyny);
 
         }
         //public void Harjaa(string harja)
@@ -114,23 +118,29 @@ namespace Peli
             return OverAllHealth;
         }
 
-        public void Pese(string pesu)
+        public bool Pese(string pesu)
         {
-            int indeksi = 0;
+            bool löytyykö = true;
+            
             for (int i = 0; i < pesut.Count; i++)
             {
                 if (pesut[i].Nimi.Equals(pesu))
                 {
-                    indeksi = i;
+                    
+                    löytyykö = true;
+                    Hygiene += pesut[i].Pisteet;
+                    LaskeOverall();
+                    break;
                 }
+                else
+                    löytyykö = false;
             }
-            Hygiene += pesut[indeksi].Pisteet;
-            LaskeOverall();
-
+            return löytyykö;
         }
 
-        public void Syötä(string ruoka)
+        public bool Syötä(string ruoka)
         {
+            bool löytyykö = true;
             for (int i = 0; i < ruoat.Count; i++)
             {
                 if (ruoat[i].ruoanNimi.Equals(ruoka))
@@ -138,15 +148,31 @@ namespace Peli
                     Hunger += ruoat[i].pisteet;
                     ruoat.Remove(ruoat[i]);
                     LaskeOverall();
+                    löytyykö = true;
                     break;
                 }
+                else
+                    löytyykö = false;
             }
+            return löytyykö;
         }
 
-        internal void Leiki()
+        public bool Leiki(string leikki)
         {
-            Mieliala += leikit[0].pisteet;
-            LaskeOverall();
+            bool löytyykö = true;
+            for (int i = 0; i < leikit.Count; i++)
+            {
+                if (leikit[i].nimi.Equals(leikki))
+                {
+                    Mieliala += leikit[i].pisteet;
+                   LaskeOverall();
+                    löytyykö = true;
+                    break;
+                }
+                else
+                    löytyykö = false;
+            }
+            return löytyykö;
 
         }
 
@@ -155,6 +181,13 @@ namespace Peli
             Mieliala += 3;
             LaskeOverall();
 
+        }
+
+        internal void Harjaa()
+        {
+            Mieliala += 2;
+            hygiene += 3;
+            LaskeOverall();
         }
     }
 }

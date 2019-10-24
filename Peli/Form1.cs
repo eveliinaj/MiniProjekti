@@ -56,7 +56,7 @@ namespace Peli
         
         string ohjeet = "Yleisimmät komennot:" + Environment.NewLine
             + "syötä x = syötä haluamasi ruoka (esim. syötä omena)" + Environment.NewLine
-            + "harjaa harjalla = harjaa eläintä" + Environment.NewLine
+            + "harjaa = harjaa eläintä" + Environment.NewLine
             + "paijaa = paijaa eläintä" + Environment.NewLine
             + "pese x = pese eläin (esim. pese pesusieni)" + Environment.NewLine
             + "Kokeile vapaasti muitakin komentoja!";
@@ -190,10 +190,10 @@ namespace Peli
                     textBox1.Text = "Hoidokkisi sinnittelee...";
                     break;
                 case int n when n <= 40:
-                    textBox1.Text = "Hoidokkisi vointi voisi olla parempi.";
+                    textBox1.Text = "Lemmikkisi vointi voisi olla parempikin.";
                     break;
                 case int n when n <= 50:
-                    textBox1.Text = "Lemmikkisi vointi on stabiili.";
+                    textBox1.Text = "Lemmikkisi vointi on kohtalainen.";
                     break;
                 case int n when n <= 60:
                     textBox1.Text = "Lemmikkisi näyttää voivan ihan ok!";
@@ -208,7 +208,7 @@ namespace Peli
                     textBox1.Text= "Lemmikkisi on tyytyväinen. Erinomaista työtä!";
                     break;
                 case int n when n < 100:
-                    textBox1.Text = "Olet fantastinen eläintenhoitaja!";
+                    textBox1.Text = "Olet etevä lohikäärmeenhoitaja!";
                     break;
                 case 100:
                     textBox1.Text = "Perfection";
@@ -254,19 +254,27 @@ namespace Peli
             switch (splitattu[0])
             {
                 case "harjaa":
-                    lemmikki.Pese(splitattu[1]);
+                    if(splitattu.Length==1)
+                    lemmikki.Harjaa();
                     break;
                 case "pese":
-                    lemmikki.Pese(splitattu[1]);
+                    bool onko=lemmikki.Pese(splitattu[1]);
+                    if (!onko)
+                        textBox2.Text = $"{splitattu[1]} ei ole varastossa";
                     break;
                 case "syötä":
-                    lemmikki.Syötä(splitattu[1]);
+                bool löytyykö=lemmikki.Syötä(splitattu[1]);
+                    if (!löytyykö)
+                        textBox2.Text = $"{splitattu[1]} ei ole varastossa";
                     break;
                 case "leiki":
-                    lemmikki.Leiki();
+                    bool jooko= lemmikki.Leiki(splitattu[1]);
+                    if (!jooko)
+                        textBox2.Text = $"{splitattu[1]} ei ole varastossa";
                     break;
                 case "paijaa":
-                    lemmikki.Paijaa();
+                    if (splitattu.Length == 1)
+                        lemmikki.Paijaa();
                     break;
                 case "etsi":
                     SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_SHOW : SW_HIDE));
@@ -320,7 +328,7 @@ namespace Peli
                     break;
 
                 default:
-                    textBox1.Text+= Environment.NewLine + "Virheellinen komento!";
+                    textBox2.Text= "Virheellinen komento!";
                     break;
             }
 
