@@ -6,6 +6,8 @@ namespace Peli
 {
     public class Lemmikki
     {
+        Musiikit musiikit = new Musiikit();
+
         public string name;
         public int overAllHealth;
         public int OverAllHealth
@@ -149,6 +151,7 @@ namespace Peli
                     ruoat.Remove(ruoat[i]);
                     LaskeOverall();
                     löytyykö = true;
+                    musiikit.PositiivinenPalauteMusa();
                     break;
                 }
                 else
@@ -166,6 +169,7 @@ namespace Peli
                     Mieliala += leikit[i].pisteet;
                     LaskeOverall();
                     löytyykö = true;
+                    musiikit.PositiivinenPalauteMusa();
                     break;
                 }
                 else
@@ -176,12 +180,14 @@ namespace Peli
         internal void Paijaa()
         {
             Mieliala += 3;
+            musiikit.PositiivinenPalauteMusa();
             LaskeOverall();
         }
-        internal void Harjaa()
+        public void Harjaa()
         {
             Mieliala += 2;
             hygiene += 3;
+            musiikit.PositiivinenPalauteMusa();
             LaskeOverall();
         }
         public void Tallenna(Lemmikki tallennettava)
