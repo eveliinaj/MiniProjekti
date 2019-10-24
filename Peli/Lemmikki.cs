@@ -127,19 +127,7 @@ namespace Peli
         }
 
 
-        //public void Harjaa(string harja)
-        //{
-        //    int indeksi = 0;
-        //    for (int i = 0; i < harjat.Count; i++)
-        //    {
-        //        if (harjat[i].harja.Equals(harja))
-        //        {
-        //            indeksi = i;
-        //        }
-        //    }
-        //    Hygiene += harjat[indeksi].pisteet;
-        //    LaskeOverall();
-        //}
+     
 
         public int LaskeOverall()
         {
