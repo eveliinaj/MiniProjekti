@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Peli
 {
@@ -16,13 +18,13 @@ namespace Peli
                     value = 100;
 
                 overAllHealth = value;
-                
+
             }
         }
 
-        
 
-        private int mieliala=5;
+
+        private int mieliala = 5;
         public int Mieliala
         {
             get { return mieliala; }
@@ -34,7 +36,7 @@ namespace Peli
                 mieliala = value;
             }
         }
-        private int hygiene=5;
+        private int hygiene = 5;
         public int Hygiene
         {
             get { return hygiene; }
@@ -46,7 +48,7 @@ namespace Peli
                 hygiene = value;
             }
         }
-        private int hunger=5;
+        private int hunger = 5;
         public int Hunger
         {
             get { return hunger; }
@@ -58,6 +60,12 @@ namespace Peli
                 hunger = value;
             }
         }
+        public List<Pesutapa> dummypesut = new List<Pesutapa>();
+        Pesutapa pesu1 = new Pesutapa("hopeashampoo", 7);
+        Pesutapa sieni = new Pesutapa("pesusieni", 5);
+        Pesutapa kylpy1 = new Pesutapa("vaahtokylpy", 10);
+        Pesutapa suihku1 = new Pesutapa("suihku", 3);
+
 
         public List<Ruoka> ruoat = new List<Ruoka>();
         //public List<Harjat> harjat = new List<Harjat>();
@@ -66,6 +74,8 @@ namespace Peli
 
         public Lemmikki()
         {
+            LisääDummyPesut();
+
             this.OverAllHealth = Hygiene + Hunger + Mieliala;
 
             Random rnd = new Random();
@@ -82,8 +92,16 @@ namespace Peli
                 ruoat.Add(salmiakki);
             }
 
-            //Harjat harja = new Harjat("harja", 5);
-            //harjat.Add(harja);
+            int arvotutpesut;
+            for (int i = 0; i < 2; i++)
+            {
+                arvotutpesut = rnd.Next(0, dummypesut.Count);
+                pesut.Add(dummypesut[arvotutpesut]);
+                dummypesut.Remove(dummypesut[arvotutpesut]);
+            }
+
+           
+
             Pesutapa pesu1 = new Pesutapa("silvershampoo", 7);
             Pesutapa sieni = new Pesutapa("pesusieni", 5);
             pesut.Add(sieni);
@@ -92,12 +110,24 @@ namespace Peli
             Leikki kutitus = new Leikki("kutitus", 7);
             Leikki pelaa = new Leikki("miinaharava", -5);
             Leikki tyyny = new Leikki("tyynysota", 5);
+
+
             leikit.Add(kutitus);
             leikit.Add(pallo);
             leikit.Add(pelaa);
             leikit.Add(tyyny);
 
         }
+
+        public void LisääDummyPesut()
+        {
+            dummypesut.Add(sieni);
+            dummypesut.Add(pesu1);
+            dummypesut.Add(kylpy1);
+            dummypesut.Add(suihku1);
+        }
+
+
         //public void Harjaa(string harja)
         //{
         //    int indeksi = 0;
@@ -188,6 +218,34 @@ namespace Peli
             Mieliala += 2;
             hygiene += 3;
             LaskeOverall();
+        }
+        public void Tallenna(Lemmikki tallennettava)
+        {
+            XmlSerializer serializerTallenna = new XmlSerializer(typeof(Lemmikki));
+
+            using (StreamWriter myWriter = new StreamWriter(@"..\..\TallennusXML\Tallennus.xml", false))
+            {
+                serializerTallenna.Serialize(myWriter, tallennettava);
+            }
+        }
+
+        public Lemmikki LataaTallennettu<Lemmikki>()
+        {
+            XmlSerializer serializerLataa = new XmlSerializer(typeof(Lemmikki));
+
+            Lemmikki luettu = default(Lemmikki);
+            if (string.IsNullOrEmpty(@"..\..\TallennusXML\Tallennus.xml")) return default(Lemmikki);
+            try
+            {
+                StreamReader xmlStream = new StreamReader(@"..\..\TallennusXML\Tallennus.xml");
+                luettu = (Lemmikki)serializerLataa.Deserialize(xmlStream);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return luettu;
+
         }
     }
 }

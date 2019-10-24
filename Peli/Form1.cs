@@ -40,7 +40,6 @@ namespace Peli
         bool isVisible = true;
         IntPtr hWnd;
 
-
         Lemmikki lemmikki = new Lemmikki();
 
         Kartta kartta = new Kartta();
@@ -52,7 +51,7 @@ namespace Peli
         int vastaantulijanruoka = default;
         public List<Ruoka> randomruoat = new List<Ruoka>();
         Ruoka myrkkysieni = new Ruoka("myrkkysieni", -5);
-        Ruoka karkki = new Ruoka("karkki", 10);
+        Ruoka karkki = new Ruoka("karkki", 15);
         
         string ohjeet = "Yleisimmät komennot:" + Environment.NewLine
             + "syötä x = syötä haluamasi ruoka (esim. syötä omena)" + Environment.NewLine
@@ -68,6 +67,7 @@ namespace Peli
             randomruoat.Add(myrkkysieni);
             randomruoat.Add(karkki);
             textBox3.Text = ohjeet;
+            lemmikki = lemmikki.LataaTallennettu<Lemmikki>();
         }
 
         public void Button1_Click(object sender, EventArgs e)
@@ -287,7 +287,6 @@ namespace Peli
                     ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);
                     isVisible = !isVisible;
 
-
                     textBox3.Text = "Jee! Löysit seuraavat asiat:" + Environment.NewLine;
 
                     foreach (var ruoka in löydetyt)
@@ -301,7 +300,6 @@ namespace Peli
                         löydetyt.Remove(löydetyt[i]);
                     }
                    
-
                     VastaanTulija();
 
                     break;
@@ -325,6 +323,10 @@ namespace Peli
 
                 case "ei":
                     textBox3.Text = ohjeet;
+                    break;
+
+                case "poistu":
+                    lemmikki.Tallenna(lemmikki);
                     break;
 
                 default:
