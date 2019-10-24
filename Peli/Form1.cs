@@ -64,12 +64,24 @@ namespace Peli
         Ruoka karkki = new Ruoka("karkki", 15);
 
         //ohjeet, jotka näkyvät defaulttina textboxissa
-        string ohjeet = "Yleisimmät komennot:" + Environment.NewLine
+        string ohjeet = "Yleisimmät komennot:" + Environment.NewLine + Environment.NewLine
             + "syötä x = syötä haluamasi ruoka (esim. syötä omena)" + Environment.NewLine
+            + Environment.NewLine
             + "harjaa = harjaa eläintä" + Environment.NewLine
+            + Environment.NewLine
             + "paijaa = paijaa eläintä" + Environment.NewLine
-            + "pese x = pese eläin (esim. pese pesusieni)" + Environment.NewLine
+            + Environment.NewLine
+            + "pese x = pese eläin +" + Environment.NewLine
+            + "(esim. pese pesusieni)" + Environment.NewLine
+            + Environment.NewLine + "leiki = leiki (kokeile myös):" 
+            + Environment.NewLine + "leiki pallo/pelaa/tyyny"
+            + Environment.NewLine + Environment.NewLine
             + "Kokeile vapaasti muitakin komentoja!";
+
+        //leikit.Add(kutitus);
+        //    leikit.Add(pallo);
+        //    leikit.Add(pelaa);
+        //    leikit.Add(tyyny);
 
         public Form1()
         {
@@ -204,10 +216,10 @@ namespace Peli
             {
                 label2.Text += Environment.NewLine + pesu.Nimi;
             }
-            foreach (var leikki in lemmikki.leikit)
-            {
-                label2.Text += Environment.NewLine + leikki.nimi;
-            }
+            //foreach (var leikki in lemmikki.leikit)
+            //{
+            //    label2.Text += Environment.NewLine + leikki.nimi;
+            //}
 
         }
         private void NäytäHealth()
@@ -334,6 +346,11 @@ namespace Peli
                         if (splitattu.Length == 1)
                             lemmikki.Paijaa();
                         break;
+
+                    case "potki":
+
+                        break;
+
                     case "etsi":
                         SetWindowPos(hWnd, IntPtr.Zero.ToInt32(), 100, 100, 0, 0, SWP_NOZORDER | SWP_NOSIZE | (isVisible ? SW_SHOW : SW_HIDE));
                         ShowWindow(hWnd, isVisible ? SW_SHOW : SW_HIDE);

@@ -61,7 +61,6 @@ namespace Peli
         Pesutapa kylpy1 = new Pesutapa("vaahtokylpy", 10);
         Pesutapa suihku1 = new Pesutapa("suihku", 3);
         public List<Ruoka> ruoat = new List<Ruoka>();
-        //public List<Harjat> harjat = new List<Harjat>();
         public List<Pesutapa> pesut = new List<Pesutapa>();
         public List<Leikki> leikit = new List<Leikki>();
 
@@ -197,6 +196,7 @@ namespace Peli
             XmlSerializer serializerLataa = new XmlSerializer(typeof(Lemmikki));
 
             Lemmikki luettu = default(Lemmikki);
+
             if (string.IsNullOrEmpty(@"..\..\TallennusXML\Tallennus.xml")) return default(Lemmikki);
             try
             {
