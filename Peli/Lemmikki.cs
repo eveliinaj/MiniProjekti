@@ -55,11 +55,12 @@ namespace Peli
         }
         public int ikä = 0;
 
-        public List<Pesutapa> dummypesut = new List<Pesutapa>();
-        Pesutapa pesu1 = new Pesutapa("hopeashampoo", 7);
-        Pesutapa sieni = new Pesutapa("pesusieni", 5);
-        Pesutapa kylpy1 = new Pesutapa("vaahtokylpy", 10);
-        Pesutapa suihku1 = new Pesutapa("suihku", 3);
+        public List<Pesutapa> dummypesut = new List<Pesutapa>(); // luodaan dummypesut-niminen lista Pesutapa tietotyypillä
+        Pesutapa pesu1 = new Pesutapa("hopeashampoo", 7); // luodaan dummypesut listaan hopeashampoo olio
+        Pesutapa sieni = new Pesutapa("pesusieni", 5); // luodaan dummypesut listaan pesusieni olio
+        Pesutapa kylpy1 = new Pesutapa("vaahtokylpy", 10); // luodaan dummypesut listaan vaahtokylpy olio
+        Pesutapa suihku1 = new Pesutapa("suihku", 3); // luodaan dummypesut listaan suihku olio
+
         public List<Ruoka> ruoat = new List<Ruoka>();
         //public List<Harjat> harjat = new List<Harjat>();
         public List<Pesutapa> pesut = new List<Pesutapa>();
@@ -116,7 +117,7 @@ namespace Peli
 
         public int LaskeOverall()
         {
-            OverAllHealth = hygiene + mieliala + hunger;
+            OverAllHealth = hygiene + mieliala + hunger; //laskee lemmikin healthit yhteen kolmelta eri osa-alueelta
             return OverAllHealth;
         }
         public bool Pese(string pesu)
