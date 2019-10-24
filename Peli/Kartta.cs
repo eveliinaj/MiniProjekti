@@ -26,9 +26,19 @@ namespace Peli
             randomruoat.Add(salmiakki);
         }
 
+        public void TyhjennäLöydettyjenLista()
+        {
+            foreach (var ruoka in löydetyt)
+            {
+                löydetyt.Remove(ruoka);
+            }
+        }
+
         public List<Ruoka> NäytäKartta()
         {
             RandomRuokaa();
+            TyhjennäLöydettyjenLista();
+
             Console.WindowHeight = 26;
             Console.WindowWidth = 64;
             int näytönleveys = Console.WindowWidth;

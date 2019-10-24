@@ -244,6 +244,13 @@ namespace Peli
             input = input.ToLower();
             var splitattu = input.Split(' ');
 
+            if (tehdäänvaihto == true)
+            {
+                string vaihdettava = textBox2.Text;
+                TeeVaihtoKauppa(vaihdettava);
+                tehdäänvaihto = false;
+            }
+
             switch (splitattu[0])
             {
                 case "harjaa":
@@ -278,8 +285,14 @@ namespace Peli
                     foreach (var ruoka in löydetyt)
                     {
                         lemmikki.ruoat.Add(ruoka);
-                        textBox3.Text += ruoka + Environment.NewLine;
+                        textBox3.Text += ruoka.ruoanNimi + Environment.NewLine;
                     }
+
+                    for (int i = löydetyt.Count -1; i >= 0; i--)
+                    {
+                        löydetyt.Remove(löydetyt[i]);
+                    }
+                   
 
                     VastaanTulija();
 
@@ -298,6 +311,7 @@ namespace Peli
 
                         textBox3.Text += Environment.NewLine + Environment.NewLine
                             + "Minkä ruoan haluat antaa vaihdossa?";
+                        vastaantulija = false;
                     }
                     break;
 
@@ -310,11 +324,6 @@ namespace Peli
                     break;
             }
 
-            if (tehdäänvaihto == true)
-            {
-                string vaihdettava = textBox2.Text;
-                TeeVaihtoKauppa(vaihdettava);
-            }
 
             NäytäLemmikinKuva();
             NäytäInventory();
