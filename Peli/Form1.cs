@@ -87,6 +87,7 @@ namespace Peli
 
         public void MusiikkiaHealthinMukaan()
         {
+            ////testiiiiii
 
             if (lemmikki.OverAllHealth == 100) //toimii
             {
