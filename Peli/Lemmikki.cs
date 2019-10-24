@@ -8,6 +8,8 @@ namespace Peli
     {
         #region lemmikkiä koskevat muuttujat
 
+        Musiikit musiikit = new Musiikit();
+
         public string name;
         public int overAllHealth;
         #region overallhealth-property
@@ -186,6 +188,8 @@ namespace Peli
                     LaskeOverall();
                     löytyykö = true;
 
+                    musiikit.PositiivinenPalauteMusa();
+
                     break;
                 }
                 else
@@ -204,6 +208,8 @@ namespace Peli
                     LaskeOverall();
                     löytyykö = true;
 
+                    musiikit.PositiivinenPalauteMusa();
+
                     break;
                 }
                 else
@@ -214,12 +220,14 @@ namespace Peli
         internal void Paijaa()
         {
             Mieliala += 3;
+            musiikit.PositiivinenPalauteMusa();
             LaskeOverall();
         }
-        internal void Harjaa()
+        public void Harjaa()
         {
             Mieliala += 2;
             hygiene += 3;
+            musiikit.PositiivinenPalauteMusa();
             LaskeOverall();
         }
         #endregion
