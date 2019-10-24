@@ -93,10 +93,10 @@ namespace Peli
             {
                 musiikit.VoittoMusa();
             }
-            if (lemmikki.OverAllHealth >= 21 && lemmikki.OverAllHealth < 100) 
-            {
-                musiikit.VakioPerusMusa(); ///////JATKA TÄSTÄ !!!!!!!
-            }
+            //if (lemmikki.OverAllHealth >= 21 && lemmikki.OverAllHealth < 100) 
+            //{
+            //    musiikit.VakioPerusMusa(); ///////JATKA TÄSTÄ !!!!!!!
+            //}
             if (lemmikki.OverAllHealth == 20 && lemmikki.OverAllHealth < 20)
             {
                 musiikit.Alle20Musa();
