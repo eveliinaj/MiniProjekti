@@ -53,9 +53,7 @@ namespace Peli
         }
         public void GameOverMusa()
         {
-            Console.Beep(200, 800);
-            Console.Beep(150, 800);
-            Console.Beep(90, 1500);
+            Console.Beep(500, 1000);
         }
     }
 }
