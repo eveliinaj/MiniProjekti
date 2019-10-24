@@ -59,6 +59,7 @@
     <Compile Include="Kartta.cs" />
     <Compile Include="Leikki.cs" />
     <Compile Include="Lemmikki.cs" />
+    <Compile Include="Musiikit.cs" />
     <Compile Include="Pesutapa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

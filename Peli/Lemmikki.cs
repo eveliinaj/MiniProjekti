@@ -6,7 +6,7 @@ namespace Peli
     public class Lemmikki
     {
         public string name;
-        private int overAllHealth;
+        public int overAllHealth;
         public int OverAllHealth
         {
             get { return overAllHealth; }
@@ -16,13 +16,12 @@ namespace Peli
                     value = 100;
 
                 overAllHealth = value;
-
             }
         }
 
 
 
-        private int mieliala = 5;
+        private int mieliala = 26;
         public int Mieliala
         {
             get { return mieliala; }
@@ -34,7 +33,7 @@ namespace Peli
                 mieliala = value;
             }
         }
-        private int hygiene = 5;
+        private int hygiene = 27;
         public int Hygiene
         {
             get { return hygiene; }
@@ -46,7 +45,7 @@ namespace Peli
                 hygiene = value;
             }
         }
-        private int hunger = 5;
+        private int hunger = 26;
         public int Hunger
         {
             get { return hunger; }
@@ -180,5 +179,7 @@ namespace Peli
             LaskeOverall();
 
         }
+
+        
     }
 }

@@ -96,6 +96,8 @@ namespace Peli
 
                         itemix = randomnumber.Next(1, näytönleveys - 2);
                         itemiy = randomnumber.Next(1, näytönkorkeus - 2);
+                        Console.Beep(750, 550);
+
                         itemisumma++;
 
                         Random random = new Random();

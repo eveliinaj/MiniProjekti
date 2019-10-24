@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Peli
 {
-    
+
     public partial class Form1 : Form
     {
         private const int HWND_TOPMOST = -1;
@@ -40,11 +41,12 @@ namespace Peli
         bool isVisible = true;
         IntPtr hWnd;
 
+        Musiikit musiikit = new Musiikit();
 
         Lemmikki lemmikki = new Lemmikki();
 
         Kartta kartta = new Kartta();
-        
+
         List<Ruoka> löydetyt = new List<Ruoka>();
 
         bool vastaantulija = false;
@@ -53,7 +55,7 @@ namespace Peli
         public List<Ruoka> randomruoat = new List<Ruoka>();
         Ruoka myrkkysieni = new Ruoka("myrkkysieni", -5);
         Ruoka karkki = new Ruoka("karkki", 15);
-        
+
         string ohjeet = "Yleisimmät komennot:" + Environment.NewLine
             + "syötä x = syötä haluamasi ruoka (esim. syötä omena)" + Environment.NewLine
             + "harjaa harjalla = harjaa eläintä" + Environment.NewLine
@@ -79,7 +81,29 @@ namespace Peli
             NäytäLemmikinKuva();
             NäytäInventory();
             NäytäHealth();
-            
+
+        }
+
+        public void MusiikkiaHealthinMukaan()
+        {
+
+            if (lemmikki.OverAllHealth == 100) //toimii
+            {
+                musiikit.VoittoMusa();
+            }
+            if (lemmikki.OverAllHealth >= 21 && lemmikki.OverAllHealth < 100) 
+            {
+                musiikit.VakioPerusMusa(); ///////JATKA TÄSTÄ !!!!!!!
+            }
+            if (lemmikki.OverAllHealth == 20 && lemmikki.OverAllHealth < 20)
+            {
+                musiikit.Alle20Musa();
+            }
+            if (lemmikki.OverAllHealth <= 0)
+            {
+                musiikit.GameOverMusa();
+            }
+            return;
         }
 
         public void NäytäLemmikinKuva()
@@ -176,6 +200,8 @@ namespace Peli
         }
         private void NäytäHealth()
         {
+            MusiikkiaHealthinMukaan();
+
             label1.Text = default;
             label1.Text += Environment.NewLine + lemmikki.OverAllHealth;
             switch (lemmikki.OverAllHealth)
@@ -205,7 +231,7 @@ namespace Peli
                     textBox1.Text = "Teillä pyyhkii hyvin!";
                     break;
                 case int n when n <= 90:
-                    textBox1.Text= "Lemmikkisi on tyytyväinen. Erinomaista työtä!";
+                    textBox1.Text = "Lemmikkisi on tyytyväinen. Erinomaista työtä!";
                     break;
                 case int n when n < 100:
                     textBox1.Text = "Olet fantastinen eläintenhoitaja!";
@@ -219,7 +245,7 @@ namespace Peli
         }
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -229,7 +255,7 @@ namespace Peli
 
         private void RichTextBox1_TextChanged(object sender, EventArgs e)
         {
-           
+
 
         }
 
@@ -288,20 +314,20 @@ namespace Peli
                         textBox3.Text += ruoka.ruoanNimi + Environment.NewLine;
                     }
 
-                    for (int i = löydetyt.Count -1; i >= 0; i--)
+                    for (int i = löydetyt.Count - 1; i >= 0; i--)
                     {
                         löydetyt.Remove(löydetyt[i]);
                     }
-                   
+
 
                     VastaanTulija();
 
                     break;
 
                 case "kyllä":
-                    if (lemmikki.OverAllHealth==0)
+                    if (lemmikki.OverAllHealth == 0)
                     {
-                     Lemmikki uusilemmikki = new Lemmikki();
+                        Lemmikki uusilemmikki = new Lemmikki();
                         lemmikki = uusilemmikki;
                     }
 
@@ -320,7 +346,7 @@ namespace Peli
                     break;
 
                 default:
-                    textBox1.Text+= Environment.NewLine + "Virheellinen komento!";
+                    textBox1.Text += Environment.NewLine + "Virheellinen komento!";
                     break;
             }
 
@@ -337,7 +363,14 @@ namespace Peli
 
             Random rnd = new Random();
             vastaantulijanruoka = rnd.Next(0, randomruoat.Count);
-
+            Console.Beep(750, 550);
+            Console.Beep(800, 500);
+            Thread.Sleep(10);
+            Console.Beep(550, 500);
+            Thread.Sleep(10);
+            Console.Beep(640, 500);
+            Thread.Sleep(10);
+            Console.Beep(880, 500);
             textBox3.Text += Environment.NewLine + "Oho! Löysit vastaantulijan." + Environment.NewLine +
                 $"Hänellä on {randomruoat[vastaantulijanruoka].ruoanNimi} ja hän haluaisi tehdä kanssasi vaihtokaupan." + Environment.NewLine
                 + "Haluatko vaihtaa? Vastaa kyllä/ei.";
@@ -364,13 +397,13 @@ namespace Peli
         private void LaskeMieliAlaa()
         {
             if (lemmikki.Mieliala > 0)
-            lemmikki.Mieliala = lemmikki.Mieliala - 1;
+                lemmikki.Mieliala = lemmikki.Mieliala - 1;
 
-            if(lemmikki.Hygiene > 0)
-            lemmikki.Hygiene = lemmikki.Hygiene - 1;
+            if (lemmikki.Hygiene > 0)
+                lemmikki.Hygiene = lemmikki.Hygiene - 1;
 
-            if(lemmikki.Hunger > 0)
-            lemmikki.Hunger = lemmikki.Hunger - 1;
+            if (lemmikki.Hunger > 0)
+                lemmikki.Hunger = lemmikki.Hunger - 1;
 
             lemmikki.OverAllHealth = lemmikki.Mieliala + lemmikki.Hygiene + lemmikki.Hunger;
             NäytäInventory();
@@ -398,7 +431,7 @@ namespace Peli
             //timer1.Stop();
             //timer1.Start();
         }
-     
+
 
         private void Label3_Click(object sender, EventArgs e)
         {
