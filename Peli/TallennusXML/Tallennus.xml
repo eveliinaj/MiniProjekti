@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Lemmikki xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <overAllHealth>79</overAllHealth>
+  <overAllHealth>22</overAllHealth>
+  <ikä>0</ikä>
   <dummypesut>
     <Pesutapa>
       <Nimi>pesusieni</Nimi>
@@ -12,18 +13,6 @@
     </Pesutapa>
   </dummypesut>
   <ruoat>
-    <Ruoka>
-      <ruoanNimi>omena</ruoanNimi>
-      <pisteet>2</pisteet>
-    </Ruoka>
-    <Ruoka>
-      <ruoanNimi>siemen</ruoanNimi>
-      <pisteet>1</pisteet>
-    </Ruoka>
-    <Ruoka>
-      <ruoanNimi>salmiakki</ruoanNimi>
-      <pisteet>3</pisteet>
-    </Ruoka>
     <Ruoka>
       <ruoanNimi>omena</ruoanNimi>
       <pisteet>2</pisteet>
@@ -97,8 +86,8 @@
       <pisteet>5</pisteet>
     </Leikki>
   </leikit>
-  <OverAllHealth>79</OverAllHealth>
-  <Mieliala>26</Mieliala>
-  <Hygiene>27</Hygiene>
-  <Hunger>26</Hunger>
+  <OverAllHealth>22</OverAllHealth>
+  <Mieliala>-16</Mieliala>
+  <Hygiene>19</Hygiene>
+  <Hunger>19</Hunger>
 </Lemmikki>

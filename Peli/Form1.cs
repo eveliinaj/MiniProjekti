@@ -385,6 +385,7 @@ namespace Peli
 
                     case "poistu":
                         lemmikki.Tallenna(lemmikki);
+                        this.Close();
                         break;
 
 
@@ -394,22 +395,17 @@ namespace Peli
                         {
                             if (splitattu[0] == item.ruoanNimi)
                                 tehdäänvaihto = true;
-
                         }
 
                         if (!tehdäänvaihto)
                             textBox2.Text = "Virheellinen komento!";
                         break;
-
                 }
-
-
 
             }
 
                 else
                 vaihdettu = false;
-
 
                 //default:
                 //    textBox1.Text += Environment.NewLine + "Virheellinen komento!";
