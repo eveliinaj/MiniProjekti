@@ -87,7 +87,7 @@ namespace Peli
 
         }
 
-        public void MusiikkiaHealthinMukaan()
+        public void MusiikkiaHealthinMukaan() //virheellinen komento tulee vaihdossa
         {
             ////testiiiiii
 
