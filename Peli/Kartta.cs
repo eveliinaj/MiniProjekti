@@ -56,8 +56,8 @@ namespace Peli
 
             Random randomnumber = new Random(); // kutsutaan random luokkaa
 
-            int itemix = randomnumber.Next(1, näytönleveys - 2);
-            int itemiy = randomnumber.Next(1, näytönkorkeus - 2);
+            int itemix = randomnumber.Next(1, näytönleveys - 2); //ensimmäisen tavaran lokaatio kun peli käynnistyy
+            int itemiy = randomnumber.Next(1, näytönkorkeus - 2); 
 
             int itemisumma = 0;
 
@@ -102,12 +102,10 @@ namespace Peli
                             break;
                     }
 
-                    if (itemix == Sijainti.X && itemiy == Sijainti.Y) 
-                        // Jos pelaajan sijainti kartassa sekä randomilla generoidun, karttaan ilmestyneen
-                        // tavaran sijainti on sama niin:
+                    if (itemix == Sijainti.X && itemiy == Sijainti.Y) // jos lemmikki ja tavara on samassa kohtaa
+                        
                     {
-                        // generoidaan randomis 
-                        itemix = randomnumber.Next(1, näytönleveys - 2);
+                        itemix = randomnumber.Next(1, näytönleveys - 2); //arvotaan tavaroille uusi paikka
                         itemiy = randomnumber.Next(1, näytönkorkeus - 2);
                         Console.Beep(750, 550); // Piippausääni kun kartasta löytää tavaran
 
@@ -142,8 +140,8 @@ namespace Peli
                 Y = Sijainti.Y + y
             };
 
-            if (Liiku(newSijainti))
-            {
+            if (Liiku(newSijainti))  
+            {                       // kysyy Liiku metodilta onko lemmikki liikkunut ja jos on niin silloin :
                 PolkuPerässä(); // kutsutaan metodia joka piirtää janaa kartassa liikkuvan lemmikin perässä
 
                 Console.BackgroundColor = ConsoleColor.Red;
@@ -166,9 +164,9 @@ namespace Peli
         }
 
         public bool Liiku(KoordinaattiMääreet koordinaatti) // Liikkuminen kartalla
-        {
+        { // katsoo jos lemmikki on liikkunut, silloin palauttaa truen 
             if (koordinaatti.X < 0 || koordinaatti.X >= Console.WindowWidth)
-                return false;
+                return false; //jos liikuttaa kartalla lemmikkiä
 
             if (koordinaatti.Y < 0 || koordinaatti.Y >= Console.WindowHeight)
                 return false;
