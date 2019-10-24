@@ -8,7 +8,7 @@ namespace Peli
     public class Lemmikki
     {
         public string name;
-        public int overAllHealth;
+        private int overAllHealth;
         public int OverAllHealth
         {
             get { return overAllHealth; }
@@ -18,12 +18,11 @@ namespace Peli
                     value = 100;
 
                 overAllHealth = value;
+
             }
         }
 
-
-
-        private int mieliala = 26;
+        private int mieliala = 5;
         public int Mieliala
         {
             get { return mieliala; }
@@ -35,7 +34,8 @@ namespace Peli
                 mieliala = value;
             }
         }
-        private int hygiene = 27;
+
+        private int hygiene = 5;
         public int Hygiene
         {
             get { return hygiene; }
@@ -47,7 +47,7 @@ namespace Peli
                 hygiene = value;
             }
         }
-        private int hunger = 26;
+        private int hunger = 5;
         public int Hunger
         {
             get { return hunger; }
@@ -99,22 +99,13 @@ namespace Peli
                 dummypesut.Remove(dummypesut[arvotutpesut]);
             }
 
-           
+            //Harjat harja = new Harjat("harja", 5);
+            //harjat.Add(harja);
 
-            Pesutapa pesu1 = new Pesutapa("silvershampoo", 7);
-            Pesutapa sieni = new Pesutapa("pesusieni", 5);
-            pesut.Add(sieni);
-            pesut.Add(pesu1);
-            Leikki pallo = new Leikki("pallonpotkiminen", 8);
-            Leikki kutitus = new Leikki("kutitus", 7);
-            Leikki pelaa = new Leikki("miinaharava", -5);
-            Leikki tyyny = new Leikki("tyynysota", 5);
-
-
+            Leikki pallo = new Leikki("potki palloa", 8);
+            Leikki kutitus = new Leikki("kutita", 7);
             leikit.Add(kutitus);
             leikit.Add(pallo);
-            leikit.Add(pelaa);
-            leikit.Add(tyyny);
 
         }
 
@@ -147,29 +138,23 @@ namespace Peli
             return OverAllHealth;
         }
 
-        public bool Pese(string pesu)
+        public void Pese(string pesu)
         {
-            bool löytyykö = true;
-            
+            int indeksi = 0;
             for (int i = 0; i < pesut.Count; i++)
             {
                 if (pesut[i].Nimi.Equals(pesu))
                 {
-                    
-                    löytyykö = true;
-                    Hygiene += pesut[i].Pisteet;
-                    LaskeOverall();
-                    break;
+                    indeksi = i;
                 }
-                else
-                    löytyykö = false;
             }
-            return löytyykö;
+            Hygiene += pesut[indeksi].Pisteet;
+            LaskeOverall();
+
         }
 
-        public bool Syötä(string ruoka)
+        public void Syötä(string ruoka)
         {
-            bool löytyykö = true;
             for (int i = 0; i < ruoat.Count; i++)
             {
                 if (ruoat[i].ruoanNimi.Equals(ruoka))
@@ -177,31 +162,15 @@ namespace Peli
                     Hunger += ruoat[i].pisteet;
                     ruoat.Remove(ruoat[i]);
                     LaskeOverall();
-                    löytyykö = true;
                     break;
                 }
-                else
-                    löytyykö = false;
             }
-            return löytyykö;
         }
 
-        public bool Leiki(string leikki)
+        internal void Leiki()
         {
-            bool löytyykö = true;
-            for (int i = 0; i < leikit.Count; i++)
-            {
-                if (leikit[i].nimi.Equals(leikki))
-                {
-                    Mieliala += leikit[i].pisteet;
-                   LaskeOverall();
-                    löytyykö = true;
-                    break;
-                }
-                else
-                    löytyykö = false;
-            }
-            return löytyykö;
+            Mieliala += leikit[0].pisteet;
+            LaskeOverall();
 
         }
 
@@ -212,12 +181,6 @@ namespace Peli
 
         }
 
-        internal void Harjaa()
-        {
-            Mieliala += 2;
-            hygiene += 3;
-            LaskeOverall();
-        }
         public void Tallenna(Lemmikki tallennettava)
         {
             XmlSerializer serializerTallenna = new XmlSerializer(typeof(Lemmikki));
@@ -244,8 +207,6 @@ namespace Peli
                 Console.WriteLine(ex);
             }
             return luettu;
-
         }
-
     }
 }
