@@ -5,6 +5,10 @@
         public string nimi;
         public int pisteet;
 
+        public Leikki()
+        {
+
+        }
         public Leikki(string nimi, int pisteet)
         {
             this.nimi = nimi;

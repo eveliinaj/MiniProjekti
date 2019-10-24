@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Peli
 {
@@ -155,6 +157,34 @@ namespace Peli
             Mieliala += 3;
             LaskeOverall();
 
+        }
+
+        public void Tallenna(Lemmikki tallennettava)
+        {
+            XmlSerializer serializerTallenna = new XmlSerializer(typeof(Lemmikki));
+
+            using (StreamWriter myWriter = new StreamWriter(@"..\..\TallennusXML\Tallennus.xml", false))
+            {
+                serializerTallenna.Serialize(myWriter, tallennettava);
+            }
+        }
+
+        public Lemmikki LataaTallennettu<Lemmikki>()
+        {
+            XmlSerializer serializerLataa = new XmlSerializer(typeof(Lemmikki));
+
+            Lemmikki luettu = default(Lemmikki);
+            if (string.IsNullOrEmpty(@"..\..\TallennusXML\Tallennus.xml")) return default(Lemmikki);
+            try
+            {
+                StreamReader xmlStream = new StreamReader(@"..\..\TallennusXML\Tallennus.xml");
+                luettu = (Lemmikki)serializerLataa.Deserialize(xmlStream);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return luettu;
         }
     }
 }
