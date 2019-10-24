@@ -52,7 +52,7 @@ namespace Peli
         int vastaantulijanruoka = default;
         public List<Ruoka> randomruoat = new List<Ruoka>();
         Ruoka myrkkysieni = new Ruoka("myrkkysieni", -5);
-        Ruoka karkki = new Ruoka("karkki", 10);
+        Ruoka karkki = new Ruoka("karkki", 15);
         
         string ohjeet = "Yleisimmät komennot:" + Environment.NewLine
             + "syötä x = syötä haluamasi ruoka (esim. syötä omena)" + Environment.NewLine
