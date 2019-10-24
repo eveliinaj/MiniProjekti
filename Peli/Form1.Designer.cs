@@ -38,18 +38,15 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Cursor = System.Windows.Forms.Cursors.Cross;
-
-            this.button1.Location = new System.Drawing.Point(28, 11);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-
             this.button1.Location = new System.Drawing.Point(37, 14);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(364, 50);
             this.button1.TabIndex = 0;
@@ -60,13 +57,8 @@
             // richTextBox1
             // 
             this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Cross;
-
-            this.richTextBox1.Location = new System.Drawing.Point(28, 134);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
-
             this.richTextBox1.Location = new System.Drawing.Point(37, 165);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(235, 270);
             this.richTextBox1.TabIndex = 2;
@@ -76,13 +68,8 @@
             // button2
             // 
             this.button2.Cursor = System.Windows.Forms.Cursors.Cross;
-
-            this.button2.Location = new System.Drawing.Point(263, 55);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-
             this.button2.Location = new System.Drawing.Point(351, 68);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(51, 23);
             this.button2.TabIndex = 3;
@@ -93,13 +80,8 @@
             // textBox2
             // 
             this.textBox2.Cursor = System.Windows.Forms.Cursors.Cross;
-
-            this.textBox2.Location = new System.Drawing.Point(28, 56);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-
             this.textBox2.Location = new System.Drawing.Point(37, 69);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(307, 22);
             this.textBox2.TabIndex = 4;
@@ -128,13 +110,8 @@
             // textBox1
             // 
             this.textBox1.Cursor = System.Windows.Forms.Cursors.Cross;
-
-            this.textBox1.Location = new System.Drawing.Point(28, 88);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-
             this.textBox1.Location = new System.Drawing.Point(37, 108);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(364, 53);
@@ -150,18 +127,29 @@
             // textBox3
             // 
             this.textBox3.Cursor = System.Windows.Forms.Cursors.Cross;
-
-            this.textBox3.Location = new System.Drawing.Point(338, 11);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
-
             this.textBox3.Location = new System.Drawing.Point(451, 14);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(243, 421);
             this.textBox3.TabIndex = 8;
             this.textBox3.TextChanged += new System.EventHandler(this.TextBox3_TextChanged);
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 60000;
+            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(210, 446);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Ikä: 0 vuotta";
+            this.label3.Click += new System.EventHandler(this.Label3_Click_1);
             // 
             // Form1
             // 
@@ -169,6 +157,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(723, 566);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
@@ -177,11 +166,7 @@
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-
-            this.Margin = new System.Windows.Forms.Padding(2);
-
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -201,6 +186,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
