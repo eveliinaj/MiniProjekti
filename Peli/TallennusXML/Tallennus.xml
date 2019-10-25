@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Lemmikki xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <overAllHealth>60</overAllHealth>
+  <overAllHealth>57</overAllHealth>
   <ikä>0</ikä>
   <dummypesut>
     <Pesutapa>
-      <Nimi>vaahtokylpy</Nimi>
-      <Pisteet>10</Pisteet>
+      <Nimi>hopeashampoo</Nimi>
+      <Pisteet>7</Pisteet>
     </Pesutapa>
   </dummypesut>
   <ruoat>
@@ -45,36 +45,8 @@
       <ruoanNimi>salmiakki</ruoanNimi>
       <pisteet>3</pisteet>
     </Ruoka>
-    <Ruoka>
-      <ruoanNimi>omena</ruoanNimi>
-      <pisteet>2</pisteet>
-    </Ruoka>
-    <Ruoka>
-      <ruoanNimi>siemen</ruoanNimi>
-      <pisteet>1</pisteet>
-    </Ruoka>
-    <Ruoka>
-      <ruoanNimi>salmiakki</ruoanNimi>
-      <pisteet>3</pisteet>
-    </Ruoka>
-    <Ruoka>
-      <ruoanNimi>omena</ruoanNimi>
-      <pisteet>2</pisteet>
-    </Ruoka>
-    <Ruoka>
-      <ruoanNimi>siemen</ruoanNimi>
-      <pisteet>1</pisteet>
-    </Ruoka>
-    <Ruoka>
-      <ruoanNimi>salmiakki</ruoanNimi>
-      <pisteet>3</pisteet>
-    </Ruoka>
   </ruoat>
   <pesut>
-    <Pesutapa>
-      <Nimi>hopeashampoo</Nimi>
-      <Pisteet>7</Pisteet>
-    </Pesutapa>
     <Pesutapa>
       <Nimi>pesusieni</Nimi>
       <Pisteet>5</Pisteet>
@@ -82,6 +54,10 @@
     <Pesutapa>
       <Nimi>suihku</Nimi>
       <Pisteet>3</Pisteet>
+    </Pesutapa>
+    <Pesutapa>
+      <Nimi>vaahtokylpy</Nimi>
+      <Pisteet>10</Pisteet>
     </Pesutapa>
   </pesut>
   <leikit>
@@ -102,8 +78,8 @@
       <pisteet>5</pisteet>
     </Leikki>
   </leikit>
-  <OverAllHealth>60</OverAllHealth>
-  <Mieliala>20</Mieliala>
-  <Hygiene>20</Hygiene>
-  <Hunger>20</Hunger>
+  <OverAllHealth>57</OverAllHealth>
+  <Mieliala>19</Mieliala>
+  <Hygiene>19</Hygiene>
+  <Hunger>19</Hunger>
 </Lemmikki>
